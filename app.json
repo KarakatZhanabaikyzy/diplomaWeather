@@ -1,4 +1,8 @@
 {
   "name": "diplomaWeather",
-  "displayName": "diplomaWeather"
+  "displayName": "diplomaWeather",
+  "android":{
+    "softwareKeyboardLayoutMode": "pan"
+ }
 }
+
