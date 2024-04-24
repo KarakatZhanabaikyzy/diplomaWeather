@@ -85,7 +85,7 @@ export function TabNav(){
                   }}
                  />
             <Tab.Screen 
-                name="Settings" 
+                name="RecommendationPage" 
                 component={RecommendationPage} 
                 options={{
                     tabBarIcon: ({ focused }) => (

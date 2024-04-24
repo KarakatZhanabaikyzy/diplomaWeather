@@ -12,7 +12,7 @@ export const s = StyleSheet.create({
         width: 412,
         height: 600,
         flex: 1,
-        marginTop: 90,
+        marginTop:70,
         backgroundColor: "white",
         justifyContent: "flex-end",
         alignItems: "center",
@@ -43,12 +43,12 @@ export const s = StyleSheet.create({
         alignItems:"center",
      //   backgroundColor:"green",
         marginTop: 25,
-        marginBottom: 15
+        marginBottom: 25
       },
       inputContainer:{
      //   backgroundColor:"blue",
         width: 412,
-        height: 300,
+        height: 140,
         paddingHorizontal: 20,
         alignItems:"center"
       },
@@ -61,9 +61,49 @@ export const s = StyleSheet.create({
         paddingHorizontal: 10,
       },
       button_ext:{
-        backgroundColor:"#22668D", 
+        backgroundColor:"#7E7E7E", 
         marginBottom: 40,
-        marginTop: 120,
+        marginTop: 0,
+        width: 250
       },
+      root:{
+        alignSelf: "stretch",
+        justifyContent: "center",
+    },
+    input:{
+        backgroundColor: "#EFEFEF",
+        height: 50,
+        borderRadius: 15,
+        flexDirection:"row",
+        justifyContent:"space-evenly",
+    },
+
+    inputFeedback:{
+        width: 412,
+        height: 300,
+        paddingHorizontal: 20,
+        alignItems:"center",
+        // backgroundColor:"green",
+        justifyContent:"flex-end"
+    },
+    input_feedback:{
+      justifyContent: "space-evenly",
+      // backgroundColor:"red",
+       width: 400,
+       height: 80,
+       alignItems:"center",
+       paddingHorizontal: 10,
+    },
+    buttons_box:{
+      flexDirection:"row",
+      alignItems:"center",
+      marginBottom: 10,
+      // backgroundColor:"blue",
+      justifyContent: "space-evenly",
+      marginHorizontal: 15,
+      width: 412,
+
+    
+  },
 
 });

@@ -14,33 +14,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export function LoginPage(){
     const nav = useNavigation();
 
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-
-  //   const handleLogin = async () => {
-  //     try {
-  //         const response = await axios.post("https://diplomawork-production.up.railway.app/login", {
-  //             username: username,
-  //             password: password,
-
-  //           });
-
-  //           console.log(response);
-  //         if (response.status === 200 && response.data.access_token) {
-  //             // const token = response.data.access_token;
-  //             // console.log("Successful login:", token);
-  //             // await AsyncStorage.setItem('userToken', token); 
-  //             Alert.alert("Success", "You have successfully logged in!");
-  //             nav.navigate("MainPage");
-  //         } else {
-  //           Alert.alert("Error", errorMessage);
-  //         }
-  //     } catch (error) {
-  //         console.error("Error logging in:", error);
-  //         Alert.alert("Error", "Something went wrong. Try again.");
-  //     }
-  // };
 
   const saveTokenToStorage = async (token) => {
     try {
@@ -63,7 +39,7 @@ export function LoginPage(){
     const isTokenSaved = await saveTokenToStorage(token);
     if (isTokenSaved) {
       console.log('Token is successfully saved in AsyncStorage.');
-      nav.navigate('MainPage');
+      nav.navigate('TabNav');
     } else {
       console.log('Failed to save the token in AsyncStorage.');
     }
@@ -78,7 +54,7 @@ export function LoginPage(){
   const handleLogin = async () => {
     try {
         const response = await axios.post("https://diplomawork-production.up.railway.app/login", {
-            username: username,
+            email: email,
             password: password,
         });
 
@@ -88,9 +64,9 @@ export function LoginPage(){
 
 
         if (response.status === 200) {
-            console.log("Успешный вход в систему:", data);
+            console.log("Successfully logged in to the system:", data);
             performLoginRequest(token);
-            Alert.alert("Success", "You have successfully logged in!");
+            // Alert.alert("Success", "You have successfully logged in!");
         } else {
             Alert.alert("Error", data.msg || "Something went wrong");
         }
@@ -113,9 +89,9 @@ export function LoginPage(){
               <View style={s.root}>
                 <TextInput 
                    style={s.input_text} 
-                   placeholder="Username"
-                   value={username}
-                   onChangeText={text => setUsername(text)}
+                   placeholder="E-mail"
+                   value={email}
+                   onChangeText={text => setEmail(text)}
                 />
               </View>
               <View style={s.root}>

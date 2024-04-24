@@ -32,7 +32,7 @@ export function Welcome(){
             </View> 
             <View style={s.buttons_box2}>   
                 <ButtonBig  style={{backgroundColor: "#22668D"}}
-                 onPress={()=> nav.navigate("ProfilePage", {})}>
+                 onPress={()=> nav.navigate("TabNav", {})}>
                     <Txt style={s.text}>Use as a guest</Txt>
                 </ButtonBig>
                 

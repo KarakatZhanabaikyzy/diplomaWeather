@@ -11,8 +11,14 @@ import { ButtonSmall } from "../../components/ButtonSmall/ButtonSmall";
 import { useState } from "react";
 import { Favs } from "../Favs/Favs";
 
-export function RecommendationPage(){
+export function RecommendationPage( {imageURL} ){
+
+    // Теперь вы можете использовать imageUrl как { uri: imageUrl }
+    // Используйте mainPageExample как fallback, если imageUrl не определён
+    // const imageSrc = imageUrl ? { uri: imageUrl } : mainPageExample;
+
     const nav = useNavigation();
+
 
      return(
         <View style={s.main_box}>
@@ -40,7 +46,21 @@ export function RecommendationPage(){
                 {/* <ButtonLike
                  onPress={()=> nav.navigate("StyleChoice", {})}/> */}
                  </View>
-                 <Image style={s.img_carousel} source={mainPageExample}/>
+                 {/* <Image style={s.img_carousel} source={{ uri: imageUrl }}/> */}
+                 {
+                    console.log("Тип imageUrl:", typeof imageURL)
+                 }
+                 {
+                    console.log("Значение imageUrl:", imageURL)
+                 }
+                 {  
+                    
+                       typeof imageURL === 'string' ? (
+                       <Image style={s.img_carousel} source={{ uri: imageURL }} />
+                    ) : (
+                       <Image style={s.img_carousel} source={{uri: `http://diplomawork-production.up.railway.app/static/out/txt2img_193015369.png`}} />
+                    )
+                }
                  <View style={s.buttons_box}>
                     <ButtonSmall style={s.back_btn}>
                         <Txt style={{color:"#22668D"}}>again</Txt>    
