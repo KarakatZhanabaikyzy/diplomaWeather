@@ -33,5 +33,15 @@ export const s = StyleSheet.create({
         flexDirection:"column",
         justifyContent:"flex-end"
     },
+    root:{
+        alignSelf: "stretch",
+        justifyContent: "center",
+    },
+    input_text:{
+        backgroundColor: "#D2EBF2",
+        height: 70,
+        borderRadius: 15,
+        paddingLeft: 25,
+    }
    
 });

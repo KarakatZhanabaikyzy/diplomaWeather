@@ -1,4 +1,4 @@
-import {View, Text, Image, TouchableOpacity, Alert, ScrollView} from "react-native";
+import {View, Text, Image, TouchableOpacity, Alert, ScrollView, TextInput} from "react-native";
 import { useState } from "react";
 import {Txt} from "..//../components/Txt/Txt";
 import {s} from "./LoginPage.style";
@@ -18,29 +18,90 @@ export function LoginPage(){
     const [password, setPassword] = useState("");
 
 
-    const handleLogin = async () => {
-      try {
-          const response = await axios.post("https://diplomawork-production.up.railway.app/login", {
-              username: username,
-              password: password,
+  //   const handleLogin = async () => {
+  //     try {
+  //         const response = await axios.post("https://diplomawork-production.up.railway.app/login", {
+  //             username: username,
+  //             password: password,
 
-            });
+  //           });
 
-            console.log(response);
-          if (response.status === 200 && response.data.access_token) {
-              const token = response.data.access_token;
-              console.log("Successful login:", token);
-              await AsyncStorage.setItem('userToken', token); 
-              Alert.alert("Success", "You have successfully logged in!");
-              nav.navigate("MainPage");
-          } else {
-            Alert.alert("Error", errorMessage);
-          }
-      } catch (error) {
-          console.error("Error logging in:", error);
-          Alert.alert("Error", "Something went wrong. Try again.");
-      }
+  //           console.log(response);
+  //         if (response.status === 200 && response.data.access_token) {
+  //             // const token = response.data.access_token;
+  //             // console.log("Successful login:", token);
+  //             // await AsyncStorage.setItem('userToken', token); 
+  //             Alert.alert("Success", "You have successfully logged in!");
+  //             nav.navigate("MainPage");
+  //         } else {
+  //           Alert.alert("Error", errorMessage);
+  //         }
+  //     } catch (error) {
+  //         console.error("Error logging in:", error);
+  //         Alert.alert("Error", "Something went wrong. Try again.");
+  //     }
+  // };
+
+  const saveTokenToStorage = async (token) => {
+    try {
+      await AsyncStorage.setItem('access_token', token);
+      console.log("token is saved!!");
+
+      const savedToken = await AsyncStorage.getItem('access_token');
+      console.log('Retrieved token from storage:', savedToken);
+
+    return savedToken === token;  
+
+    } catch (error) {
+      console.error('Error saving token to AsyncStorage:', error);
+      return false;  
+    }
   };
+
+
+  const handleSuccessfulLogin = async (token) => {
+    const isTokenSaved = await saveTokenToStorage(token);
+    if (isTokenSaved) {
+      console.log('Token is successfully saved in AsyncStorage.');
+      nav.navigate('MainPage');
+    } else {
+      console.log('Failed to save the token in AsyncStorage.');
+    }
+  };
+  
+
+  const performLoginRequest = async (token) => {
+    handleSuccessfulLogin(token);
+  };
+
+
+  const handleLogin = async () => {
+    try {
+        const response = await axios.post("https://diplomawork-production.up.railway.app/login", {
+            username: username,
+            password: password,
+        });
+
+        const data = response.data;
+        const token = response.data.access_token;
+        console.log("Token:", token);
+
+
+        if (response.status === 200) {
+            console.log("Успешный вход в систему:", data);
+            performLoginRequest(token);
+            Alert.alert("Success", "You have successfully logged in!");
+        } else {
+            Alert.alert("Error", data.msg || "Something went wrong");
+        }
+    } catch (error) {
+        console.error("Error logging in:", error);
+        Alert.alert("Error", error.response?.data?.msg || "Something went wrong. Try again.");
+    }
+     
+};
+
+
 
     return(
       <ScrollView contentContainerStyle={{ flexGrow: 3}}>  
@@ -49,15 +110,21 @@ export function LoginPage(){
                 <Txt style={{fontSize: 30}}>Hi, Welcome back</Txt>
             </View>
             <View style={s.input_box}>
-                <InputPlace 
+              <View style={s.root}>
+                <TextInput 
+                   style={s.input_text} 
                    placeholder="Username"
                    value={username}
                    onChangeText={text => setUsername(text)}
                 />
-                 <InputPlace 
+              </View>
+              <View style={s.root}>
+                 <TextInput
+                   style={s.input_text} 
                    placeholder="Password"
                    value={password}
                    onChangeText={text => setPassword(text)}/>
+              </View>
             </View>
             <View style={s.redirection}>
                 <TouchableOpacity>
