@@ -14,6 +14,7 @@ import mainPageExample from "..//../assets/mainPageExample.png";
 
 
 
+
 export function StyleChoice(){
 
   const nav = useNavigation();
@@ -23,7 +24,9 @@ export function StyleChoice(){
   const [location, setLocation] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [imageURL, setImageURL] = useState(mainPageExample); 
+  const [imageId, setImageId] = useState('');
   const [shouldNavigate, setShouldNavigate] = useState(false);
+
 
 
   // const [clothingStyle, setClothingStyle] = useState(category);
@@ -44,10 +47,10 @@ export function StyleChoice(){
   useEffect(() => {
     if (shouldNavigate) {
       console.log("Navigating with imageURL:", imageURL);
-      nav.navigate("RecommendationPage", { imageURL });
+      nav.navigate("RecommendationPage", {imageUrl:  imageURL, imageID: imageId});
       setShouldNavigate(false); // Сброс после навигации
     }
-  }, [shouldNavigate]); // Эффект срабатывает при изменении shouldNavigate
+  }, [shouldNavigate,imageURL]); // Эффект срабатывает при изменении shouldNavigate
   
   
 
@@ -58,18 +61,8 @@ export function StyleChoice(){
     try {
       const token = await AsyncStorage.getItem('access_token');
       console.log("1");
-      console.log(
-        'https://diplomawork-production.up.railway.app/main_outfit', {
-        location, 
-        clothing_style: category,  
-        save_to_favorites: true  
-      }, {
-        headers: {
-          'Authorization': `Bearer ${token}`  
-        }}
-      )
       const response = await axios.post('https://diplomawork-production.up.railway.app/main_outfit', {
-        location: location , //*** 
+        location: location , 
         clothing_style: category,  
         save_to_favorites: true  
       }, {
@@ -82,9 +75,10 @@ export function StyleChoice(){
       
       if (response.data.message === 'Image generated successfully' && response.data.image_url) {
         console.log("URL:", response.data.image_url);
-        Alert.alert("Success", "Preferences saved successfully!");
         setLocation('');  // Сбросить location после успешной отправки //проблема again
         setImageURL(response.data.image_url);
+        setImageId(response.data.image_id);
+
         // setShouldNavigate(true); // Подготовка к навигации
 
         console.log("URL second:", response.data.image_url);

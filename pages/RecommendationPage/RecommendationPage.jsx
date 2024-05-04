@@ -8,14 +8,45 @@ import mainPageExample from "..//../assets/mainPageExample.png";
 import { ButtonLike } from "../../components/ButtonLike/ButtonLike";
 import { useNavigation } from "@react-navigation/native";
 import { ButtonSmall } from "../../components/ButtonSmall/ButtonSmall";
-import { useState } from "react";
+import {useEffect, useState } from "react";
 import { Favs } from "../Favs/Favs";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from "axios";
 
-export function RecommendationPage( {imageURL} ){
+export function RecommendationPage( { route } ){
 
     // Теперь вы можете использовать imageUrl как { uri: imageUrl }
     // Используйте mainPageExample как fallback, если imageUrl не определён
     // const imageSrc = imageUrl ? { uri: imageUrl } : mainPageExample;
+    
+    const { imageUrl } = route.params;
+    const { imageID } = route.params;
+   
+
+
+    async function addToFavorites() {
+        try {
+          const token = await AsyncStorage.getItem('access_token');
+          const response = await axios.post('https://diplomawork-production.up.railway.app/add_to_favorites', {
+            image_id: imageID
+          }, {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+      
+          if (response.data.message === 'Image added to favorites successfully') {
+            Alert.alert("Success", "Image added to favorites!");
+            console.log("Image ID:", imageID);
+          } else {
+            Alert.alert("Error", response.data.error || "Unknown error occurred");
+          }
+        } catch (error) {
+          console.error('Error adding to favorites:', error);
+          Alert.alert("Error", "Failed to add to favorites");
+        }
+        console.log("Image ID:", imageID);
+      }
 
     const nav = useNavigation();
 
@@ -48,24 +79,27 @@ export function RecommendationPage( {imageURL} ){
                  </View>
                  {/* <Image style={s.img_carousel} source={{ uri: imageUrl }}/> */}
                  {
-                    console.log("Тип imageUrl:", typeof imageURL)
+                    console.log("Тип imageUrl:", typeof imageUrl)
                  }
                  {
-                    console.log("Значение imageUrl:", imageURL)
+                    console.log("Значение imageUrl:", imageUrl)
                  }
                  {  
                     
-                       typeof imageURL === 'string' ? (
-                       <Image style={s.img_carousel} source={{ uri: imageURL }} />
+                       typeof imageUrl === 'string' ? (
+                       <Image style={s.img_carousel} source={{ uri: imageUrl }} />
                     ) : (
-                       <Image style={s.img_carousel} source={{uri: `http://diplomawork-production.up.railway.app/static/out/txt2img_193015369.png`}} />
+                       <Image style={s.img_carousel} source={mainPageExample} />
                     )
                 }
                  <View style={s.buttons_box}>
                     <ButtonSmall style={s.back_btn}>
                         <Txt style={{color:"#22668D"}}>again</Txt>    
                     </ButtonSmall>
-                    <ButtonSmall style={{backgroundColor:"#22668D"}}>
+                    <ButtonSmall 
+                        style={{backgroundColor:"#22668D"}}
+                        onPress={addToFavorites}
+                        >
                         <Txt style={{color:"white"}}>save look</Txt>
                     </ButtonSmall>
                  </View>
