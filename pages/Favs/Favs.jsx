@@ -53,14 +53,42 @@ export function Favs(){
         nav.navigate("StyleChoice"); 
     };
 
-    // const renderItem = ({ item }) => (
-    //     <View style={s.imageContainer}>
-    //         <Image style={s.image} source={{ uri: item.image_url }} />
+   
     //         {/* <Text style={s.description}>{item.description}</Text> */}
-    //     </View>
-    // );
+ 
 
-    const renderItem = ({ item }) => {
+    // const renderItem = ({ item }) => {
+    //     if (item.isDefault) {
+    //         return (
+    //             <TouchableOpacity onPress={handlePressDefaultImage}>
+    //                 <View style={s.imageContainer}>
+    //                     <Image style={s.image} source={item.source} />
+    //                 </View>
+    //             </TouchableOpacity>
+    //         );
+    //     } else {
+    //         return (
+    //             <View style={s.imageContainer}>
+    //                 <Image style={s.image} source={{ uri: item.image_url }} />
+    //             </View>
+    //         );
+    //     }
+    // };
+
+    const renderItem = ({ item, index }) => {
+        const onLongPress = () => {
+            Alert.alert(
+                "Options",
+                "Select an option",
+                [
+                    // { text: "Cancel", style: "cancel" },
+                    { text: "Description", onPress: () => Alert.alert("Description", item.description || "No description available.") },
+                    { text: "Delete", onPress: () => deleteFavorite(index), style: 'destructive' }
+                ],
+                { cancelable: true }
+            );
+        };
+    
         if (item.isDefault) {
             return (
                 <TouchableOpacity onPress={handlePressDefaultImage}>
@@ -71,10 +99,32 @@ export function Favs(){
             );
         } else {
             return (
-                <View style={s.imageContainer}>
-                    <Image style={s.image} source={{ uri: item.image_url }} />
-                </View>
+                <TouchableOpacity onLongPress={onLongPress}>
+                    <View style={s.imageContainer}>
+                        <Image style={s.image} source={{ uri: item.image_url }} />
+                    </View>
+                </TouchableOpacity>
             );
+        }
+    };
+
+    const deleteFavorite = async (index) => {
+        try {
+            const token = await AsyncStorage.getItem('access_token');
+            const response = await axios.delete(`https://diplomawork-production.up.railway.app/favorites/${index}`, {
+                headers: { 
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+    
+            if (response.status === 200) {
+                // Update the state to remove the item from the list
+                setFavorites(favorites.filter((_, favIndex) => favIndex !== index));
+                Alert.alert("Deleted", "The image has been successfully deleted.");
+            }
+        } catch (error) {
+            console.error('Failed to delete favorite:', error);
+            Alert.alert("Error", "Failed to delete the item.");
         }
     };
 

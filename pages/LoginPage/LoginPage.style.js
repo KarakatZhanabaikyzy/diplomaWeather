@@ -2,22 +2,26 @@ import { StyleSheet } from "react-native";
 
 export const s = StyleSheet.create({
     main_box:{
-        backgroundColor: "white",
+       backgroundColor: "white",
        paddingBottom: 80,
        paddingTop: 60,
        paddingHorizontal: 15,
-       flex:1,
+    //    flex:5,
+    height: 850
     },
     hi:{
         flex: 0.5,
+        // backgroundColor:"white"
     },
     input_box:{
         justifyContent:"space-between",
-        flex:0.3,
+        height: 170,
+        // backgroundColor:"pink"
     },
     forgot:{
         flexDirection: "row",
         justifyContent:"flex-end",
+        // backgroundColor:"red"
     },
     redirection:{
         flex:1,
@@ -26,12 +30,14 @@ export const s = StyleSheet.create({
     signup:{
         flexDirection: "row",
         justifyContent: "center",
+        // backgroundColor: "blue"
     },
     google:{
         flex:1,
         alignItems: "center",
         flexDirection:"column",
-        justifyContent:"flex-end"
+        justifyContent:"flex-end",
+        // backgroundColor:"yellow"
     },
     root:{
         alignSelf: "stretch",

@@ -33,13 +33,13 @@ async function getUserCity() {
     return userData.city;
   } catch (error) {
     console.error('Error fetching user city:', error);
-    return 'Default City'; // Use a default city in case of failure
+    return 'Warsaw'; 
   }
 }
 
 async function getCoordinatesForCity(city) {
   if (!city) {
-    return { lat: "41.38879", lng: "2.15899" }; // Default coordinates
+    return { lat: "41.38879", lng: "2.15899" }; 
   }
 
   try {
@@ -49,13 +49,11 @@ async function getCoordinatesForCity(city) {
     return { lat, lng };
   } catch (error) {
     console.error('Error getting coordinates for city:', error);
-    return { lat: "41.38879", lng: "2.15899" }; // Default coordinates in case of error
+    return { lat: "41.38879", lng: "2.15899" };
   }
 }
 
-// async function updateUser(username,email,city){
-  
-// }
+
 
 
 export function MainPage(){
@@ -82,77 +80,6 @@ export function MainPage(){
     }
   }, [coordinates]);
 
-
-  // useEffect(() => {
-  //  getUserCoordinates();
-  // },[]);
-
-//   useEffect(()=>{
-//     console.log("COORDS---->", coordinates);
-//     if(coordinates){
-//      fetchWeatherByCoords(coordinates);  
-//      fetchCityByCoords(coordinates);
-//     }
-//   }, [coordinates]);
-
-//   useEffect(() => {
-//     console.log("WEATHER-->", weather);
-    
-//    },[weather]);
-    
-//    useEffect(() => {
-//     console.log("CITY--->", city);
-//    },[city]);
-
-
-   
-//  async function fetchWeatherByCoords(coords){
-//      const weatherResponse = await MeteoAPI.fetchWeatherByCoords(coords);
-//      setWeather(weatherResponse);
-//  };
-
-//  async function fetchCityByCoords(coords){
-//       const cityResponse = await MeteoAPI.fetchCityByCoords(coords);
-//       setCity(cityResponse);
-// };
-
-//  async function fetchCoordsByCity(city){
-//       const coordsResponse = await MeteoAPI.fetchCoordsByCity(city);
-//       setCoordinates(coordsResponse);
-//  };
-
-    // async function getUserCoordinates() {
-    //     try {
-    //       const {status} = await PermissionsAndroid.request(
-    //         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-    //         {
-    //           title: 'Location Permission',
-    //           message: 'This app needs access to your location.',
-    //           buttonNeutral: 'Ask Me Later',
-    //           buttonNegative: 'Cancel',
-    //           buttonPositive: 'OK',
-    //         }
-    //       );
-    //       if (status === PermissionsAndroid.RESULTS.GRANTED) {
-    //         Geolocation.getCurrentPosition(
-    //           position => {
-    //             setCoordinates(position.coords);
-    //           },
-    //           error => {
-    //            console.error("Geolocation error:", error);
-    //           },
-    //           { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-    //         );
-    //       } else {
-    //             setCoordinates({lat: "41.38879", lng: "2.15899"});
-    //            // setCoordinates({lat: "	48.85341", lng: "2.3488"});
-    //            //  console.log("error")
-    //       }
-    //     } catch (err) {
-    //       console.warn(err);
-    //     }
-    // };
-      
 
 
     return(

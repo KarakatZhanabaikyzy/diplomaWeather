@@ -8,6 +8,7 @@ import { MainPage } from "../MainPage/MainPage";
 import { SvgXml } from 'react-native-svg';
 import { RecommendationPage } from "../RecommendationPage/RecommendationPage";
 import { ProfilePage } from "../ProfilePage/ProfilePage";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
  
 
@@ -59,6 +60,10 @@ export function TabNav(){
           marginRight: 15,
           marginBottom: 15,
           borderRadius: 10,
+          // position: 'absolute',
+          // bottom: 0,
+          // left: 0,
+          // right: 0,
           
 
         },
@@ -68,12 +73,17 @@ export function TabNav(){
           height: 30,
           width: 30,
         },
-        tabBarShowLabel: false 
+        
+        tabBarShowLabel: false,
+        headerShown: false,
+        
       };
 
     return(
+      
+      
           <Tab.Navigator  {...{ screenOptions }}
-          >
+          > 
             <Tab.Screen 
                 name="MainPage" 
                 component={MainPage}
@@ -104,7 +114,6 @@ export function TabNav(){
                     headerShown: false 
                   }}
                 />
-            
           </Tab.Navigator>
 
       )

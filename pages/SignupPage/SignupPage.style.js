@@ -6,19 +6,22 @@ export const s = StyleSheet.create({
        paddingBottom: 80,
        paddingTop: 60,
        paddingHorizontal: 15,
-       flex:1,
+    //    flex:1,
+       height: 850
     },
     hi:{
         flex: 0.3,
     },
     input_box:{
         justifyContent:"space-between",
-        flex:1.3,
-        marginBottom: 10
+        height: 310,
+        marginBottom: 10,
+        // backgroundColor:"pink"
     },
     redirection:{
         flex:0.5,
         justifyContent:"space-between",
+       
     },
     signup:{
         flexDirection: "row",

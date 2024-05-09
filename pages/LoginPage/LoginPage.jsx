@@ -9,6 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import { SignupPage } from "../SignupPage/SignupPage";
 import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 
 export function LoginPage(){
@@ -80,6 +81,14 @@ export function LoginPage(){
 
 
     return(
+      <KeyboardAwareScrollView
+            style={{ flex: 1 }}
+            resetScrollToCoords={{ x: 0, y: 0 }}
+            scrollEnabled={true}
+            keyboardShouldPersistTaps="handled"
+            extraScrollHeight={20}
+            enableOnAndroid={true}
+        >
       <ScrollView contentContainerStyle={{ flexGrow: 3}}>  
         <View style={s.main_box}>
             <View style={s.hi}>
@@ -133,5 +142,6 @@ export function LoginPage(){
             
         </View>
      </ScrollView>   
+     </KeyboardAwareScrollView>
     );
 }

@@ -7,6 +7,7 @@ import { ButtonBig } from "../../components/ButtonBig/ButtonBig";
 import {useEffect, useState } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 // import { useNavigation } from "@react-navigation/native";
 
 export function ProfilePage(){
@@ -71,7 +72,7 @@ export function ProfilePage(){
                 }
             });
             Alert.alert("Success", "Feedback sent successfully!");
-            setFeedback(''); // Очистить поле после отправки
+            setFeedback('');
         } catch (error) {
             console.error('Error sending feedback:', error);
             Alert.alert("Error", "Failed to send feedback");
@@ -80,6 +81,14 @@ export function ProfilePage(){
 
 
     return (
+        <KeyboardAwareScrollView
+            style={{ flex: 1 }}
+            resetScrollToCoords={{ x: 0, y: 0 }}
+            scrollEnabled={true}
+            keyboardShouldPersistTaps="handled"
+            extraScrollHeight={20}
+            enableOnAndroid={true}
+        >
         <View style={s.main_box}>  
               <View style={s.innerView}>
                     <View style={s.circle}>
@@ -150,5 +159,6 @@ export function ProfilePage(){
                      </ButtonBig>
               </View> 
         </View>
+        </KeyboardAwareScrollView>
     );
 };

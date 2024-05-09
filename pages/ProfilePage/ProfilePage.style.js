@@ -10,7 +10,7 @@ export const s = StyleSheet.create({
       },
       innerView: {
         width: 412,
-        height: 600,
+        height: 670,
         flex: 1,
         marginTop:70,
         backgroundColor: "white",
@@ -26,7 +26,7 @@ export const s = StyleSheet.create({
         backgroundColor: "white",
         borderRadius: 80,
         position: "absolute",
-        top: -50, // Отрицательное значение, чтобы круг выходил за пределы внутреннего View
+        top: -50,
         alignItems:"center",
         justifyContent:"center" 
       },
@@ -37,16 +37,17 @@ export const s = StyleSheet.create({
         borderRadius: 80,
         position: "absolute",
         alignItems:"center",
-        justifyContent:"center"
+        justifyContent:"center",
+        
       },
       txt_info:{
         alignItems:"center",
-     //   backgroundColor:"green",
-        marginTop: 25,
-        marginBottom: 25
+      //  backgroundColor:"green",
+        marginTop: 10,
+        marginBottom: 25,
       },
       inputContainer:{
-     //   backgroundColor:"blue",
+      //  backgroundColor:"blue",
         width: 412,
         height: 140,
         paddingHorizontal: 20,
@@ -54,7 +55,7 @@ export const s = StyleSheet.create({
       },
       input_box:{
         justifyContent: "space-evenly",
-       // backgroundColor:"red",
+      //  backgroundColor:"red",
         width: 400,
         height: 200,
         alignItems:"center",
@@ -62,7 +63,7 @@ export const s = StyleSheet.create({
       },
       button_ext:{
         backgroundColor:"#7E7E7E", 
-        marginBottom: 40,
+        // marginBottom: 40,
         marginTop: 0,
         width: 250
       },
@@ -80,11 +81,12 @@ export const s = StyleSheet.create({
 
     inputFeedback:{
         width: 412,
-        height: 300,
+        height: 200,
         paddingHorizontal: 20,
         alignItems:"center",
-        // backgroundColor:"green",
-        justifyContent:"flex-end"
+        // backgroundColor:"pink",
+        justifyContent:"center",
+        marginTop: 100
     },
     input_feedback:{
       justifyContent: "space-evenly",
@@ -97,7 +99,7 @@ export const s = StyleSheet.create({
     buttons_box:{
       flexDirection:"row",
       alignItems:"center",
-      marginBottom: 10,
+      // // marginBottom: 10,
       // backgroundColor:"blue",
       justifyContent: "space-evenly",
       marginHorizontal: 15,

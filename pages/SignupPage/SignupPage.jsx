@@ -10,6 +10,8 @@ import {LoginPage} from "..//./LoginPage/LoginPage";
 import axios from "axios";
 import {KeyboardAvoidingView } from "react-native";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+// import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
 
 export function SignupPage(){
     const nav = useNavigation();
@@ -82,9 +84,34 @@ export function SignupPage(){
         setSelectedOption(option); 
         setGender(option);
     };
+    
+    // GoogleSignin.configure({
+    //     webClientId: '988664370161-8a0nj4mpjuvta3frtfvqbit57gaa8pqn.apps.googleusercontent.com', // ID клиента, полученного из Google Cloud Console
+    // });
+
+    // const handleGoogleSignIn = async () => {
+    //     try {
+    //       await GoogleSignin.hasPlayServices();
+    //       const userInfo = await GoogleSignin.signIn();
+    //       // Отправляйте userInfo в ваш бэкенд для обработки и создания токена
+    //       console.log(userInfo);
+    //     } catch (error) {
+    //       console.error(error);
+    //     }
+    // };
+
+    
 
 
     return(
+        <KeyboardAwareScrollView
+            style={{ flex: 1 }}
+            resetScrollToCoords={{ x: 0, y: 0 }}
+            scrollEnabled={true}
+            keyboardShouldPersistTaps="handled"
+            extraScrollHeight={20}
+            enableOnAndroid={true}
+        >
         <ScrollView contentContainerStyle={{ flexGrow: 3}}>  
         <View style={s.main_box}>
             <View style={s.hi}>
@@ -159,10 +186,13 @@ export function SignupPage(){
             </View>
             <View style={s.google}>
                 <Txt style={{color:"#B0B0B0"}}>Other method</Txt>
-                <ButtonGoogle />
+                <ButtonGoogle 
+                //    onPress={handleGoogleSignIn}
+                />
             </View>
 
         </View>
         </ScrollView> 
+        </KeyboardAwareScrollView>
     );
 }
