@@ -1,4 +1,4 @@
-import {View, Text, Image, Alert} from "react-native";
+import {View, Text, Image, Alert, ScrollView, Dimensions } from "react-native";
 import { Txt } from "../../components/Txt/Txt"; 
 import {s} from "./MainPage.style";
 import { TopHeader } from "../../components/TopHeader/TopHeader";
@@ -9,12 +9,14 @@ import mainPageExample from "..//../assets/mainPageExample.png";
 import Geolocation from 'react-native-geolocation-service';
 import { PermissionsAndroid, Platform } from 'react-native';
 import { MeteoAPI } from "..//../API/weather";
-import {useEffect, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 import { getWeatherInterpretation } from "..//../meteo-utils";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
+// import Carousel from 'react-native-snap-carousel';
 
+const { width } = Dimensions.get('window'); 
 
 async function getUserCity() {
   const token = await AsyncStorage.getItem('access_token');
@@ -63,6 +65,57 @@ export function MainPage(){
   const [coordinates, setCoordinates] = useState(null);
   const [weather, setWeather] = useState();
   const [city, setCity] = useState();
+  const [images, setImages] = useState([]);
+  const scrollViewRef = useRef(null); // Ссылка на ScrollView
+  const [scrollIndex, setScrollIndex] = useState(0);
+
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+        if (scrollViewRef.current) {
+            let newScrollIndex = scrollIndex + 1;
+            if (newScrollIndex >= images.length) {
+                newScrollIndex = 0; // Сброс индекса, если достигли последнего изображения
+            }
+            scrollViewRef.current.scrollTo({ x: width * newScrollIndex, animated: true });
+            setScrollIndex(newScrollIndex); // Обновление индекса прокрутки
+        }
+    }, 5000); // Прокрутка каждые 5000 мс (5 секунд)
+
+    return () => clearInterval(interval); // Очистка интервала при размонтировании компонента
+}, [scrollIndex, images.length]); 
+
+
+  useEffect(() => {
+    const fetchImages = async () => {
+        // const token = await AsyncStorage.getItem('access_token');
+        // if (!token) {
+        //     console.log('No user token found');
+        //     return;
+        // }
+
+        try {
+            const token = await AsyncStorage.getItem('access_token');
+            const response = await axios.get('https://diplomawork-production.up.railway.app/images/today', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            console.log(response.data.map(img => ({ image_url: img.image_url })));
+            // const carouselImg = response.data.map(img => ({ image_url: img.image_url }));
+            // setImages(carouselImg); 
+            setImages(response.data.map(img => ({ image_url: img.image_url })));
+            console.log('Images for Carousel:', images);
+        } catch (error) {
+            console.error('Failed to fetch images', error);
+        }
+    };
+
+    fetchImages();
+    
+
+}, []);
+
 
   useEffect(() => {
     getUserCity().then(city => {
@@ -80,9 +133,25 @@ export function MainPage(){
     }
   }, [coordinates]);
 
+  
+// const renderItem = ({ item }) => (
+//   <View style={s.carousel_box}>
+//       <Image style={s.image} source={{ uri: item.image_url }} />
+//       {/* <Text style={s.label}>{item.description}</Text> */}
+//   </View>
+// );
 
 
-    return(
+
+// const renderItem = ({ item }) => (
+//   <View style={s.carousel_box}>
+//       <Image style={s.image} source={{ uri: item.image_url }} />
+//   </View>
+// );
+
+
+
+    return( 
         <View style={s.box}>
           <View>
           <View style={s.topHeader}>
@@ -103,7 +172,45 @@ export function MainPage(){
                  <Txt>
                       Liked outfits for today
                  </Txt>
-                 <Image style={s.img_carousel} source={mainPageExample}/>
+                 {/* {images.length > 0 ? (
+    <Image style={s.img_carousel} source={{ uri: images[0].image_url }} />
+) : (
+    <Text>Загрузка изображения...</Text>
+)} */}
+                {/* <Image style={s.img_carousel} source={mainPageExample}/> */}
+                {/* {images.length > 0 ? (
+    <Carousel
+      data={images}
+      renderItem={renderItem}
+      sliderWidth={300}
+      itemWidth={300}
+    />
+) : (
+    <Text>Загрузка изображений...</Text>
+)} */}
+
+{/* <View style={s.imagesContainer}>  // Контейнер для изображений */}
+<ScrollView
+                ref={scrollViewRef}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                style={s.scrollViewStyle}
+                pagingEnabled={true} // Добавление этого свойства обеспечивает остановку прокрутки на каждом "странице"
+            >
+                {images.length > 0 ? (
+                    images.map((img, index) => (
+                        <Image 
+                            key={index}
+                            style={ s.img_carousel} // Установка ширины изображения равной ширине экрана
+                            source={{ uri: img.image_url }}
+                        />
+                    ))
+                ) : (
+                    <Text>Загрузка изображений...</Text>
+                )}
+            </ScrollView>
+        {/* </View> */}
+
             </View>
             <View  style={s.btn_box}>
             <ButtonBig style={{backgroundColor:"#22668D"}}
