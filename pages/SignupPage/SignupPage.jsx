@@ -11,6 +11,8 @@ import axios from "axios";
 import {KeyboardAvoidingView } from "react-native";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 // import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
 
 
 export function SignupPage(){
@@ -100,6 +102,34 @@ export function SignupPage(){
     //     }
     // };
 
+    GoogleSignin.configure({
+        webClientId: '988664370161-svs8r2t1cj2kpec0680vpe1uggtfo2t0.apps.googleusercontent.com', // Этот ID клиента вы получите в Google Cloud Console.
+    });
+    
+    const handleGoogleSignIn = async () => {
+        try {
+            await GoogleSignin.hasPlayServices();
+            const userInfo = await GoogleSignin.signIn();
+            sendToBackend(userInfo);
+            console.log(userInfo);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const sendToBackend = async (userInfo) => {
+        const idToken = await GoogleSignin.getTokens();
+        try {
+            const response = await axios.post('https://diplomawork-production.up.railway.app/auth/google', {
+                idToken: idToken.idToken
+            });
+            console.log('User is authenticated', response.data);
+        } catch (error) {
+            console.error('Failed to authenticate', error.response);
+        }
+    };
+    
+    
     
 
 
@@ -164,7 +194,8 @@ export function SignupPage(){
                 <TextInput style={s.input_text} 
                 placeholder="Password"
                 value={password}
-                onChangeText={text => setPassword(text)}/>
+                onChangeText={text => setPassword(text)}
+                secureTextEntry={true} />
             </View>    
             </View>
             <View style={s.redirection}>
@@ -187,7 +218,7 @@ export function SignupPage(){
             <View style={s.google}>
                 <Txt style={{color:"#B0B0B0"}}>Other method</Txt>
                 <ButtonGoogle 
-                //    onPress={handleGoogleSignIn}
+                   onPress={handleGoogleSignIn}
                 />
             </View>
 

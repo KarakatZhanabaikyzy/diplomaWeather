@@ -18,6 +18,15 @@ export function RecommendationPage( { route } ){
     // Теперь вы можете использовать imageUrl как { uri: imageUrl }
     // Используйте mainPageExample как fallback, если imageUrl не определён
     // const imageSrc = imageUrl ? { uri: imageUrl } : mainPageExample;
+
+    async function checkUser() {
+      const token = await AsyncStorage.getItem('access_token');
+      if (!token) {
+        console.log('No user token found, using default coordinates');
+        return 'Default City';
+      }
+    };
+
     
     const { imageUrl } = route.params;
     const { imageID } = route.params;

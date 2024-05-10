@@ -10,6 +10,7 @@ import { SignupPage } from "../SignupPage/SignupPage";
 import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 
 export function LoginPage(){
@@ -78,6 +79,21 @@ export function LoginPage(){
      
 };
 
+GoogleSignin.configure({
+  webClientId: '988664370161-svs8r2t1cj2kpec0680vpe1uggtfo2t0.apps.googleusercontent.com', // Этот ID клиента вы получите в Google Cloud Console.
+});
+
+const handleGoogleSignIn = async () => {
+  try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      const idToken = userInfo.idToken;
+      sendTokenToServer(idToken); // Отправить токен на сервер для валидации
+  } catch (error) {
+      console.error(error);
+  }
+};
+
 
 
     return(
@@ -108,7 +124,8 @@ export function LoginPage(){
                    style={s.input_text} 
                    placeholder="Password"
                    value={password}
-                   onChangeText={text => setPassword(text)}/>
+                   onChangeText={text => setPassword(text)}
+                   secureTextEntry={true}/>
               </View>
             </View>
             <View style={s.redirection}>
@@ -136,7 +153,9 @@ export function LoginPage(){
             </View>
             <View style={s.google}>
                 <Txt style={{color:"#B0B0B0"}}>Other method</Txt>
-                <ButtonGoogle />
+                <ButtonGoogle
+                   onPress={handleGoogleSignIn} 
+                    />
             </View>
             
             
