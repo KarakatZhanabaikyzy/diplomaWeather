@@ -16,15 +16,18 @@ export const s = StyleSheet.create({
     },
     carousel_box:{
         alignItems:"center",
-        paddingBottom: 4
+        paddingBottom: 0,
+        paddingHorizontal: 15,
+        // backgroundColor: "green"
     },
     img_carousel:{
-        width: 330,
-        height: 330,
+        width: 340,
+        height: 340,
+        borderRadius: 10,
         flexDirection:"row",
         alignItems:"center",
-        
-        backgroundColor:"white"
+        backgroundColor:"white",
+        marginHorizontal: 5
     }
     
 

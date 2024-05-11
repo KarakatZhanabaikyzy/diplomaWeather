@@ -106,29 +106,61 @@ export function SignupPage(){
         webClientId: '988664370161-svs8r2t1cj2kpec0680vpe1uggtfo2t0.apps.googleusercontent.com', // Этот ID клиента вы получите в Google Cloud Console.
     });
     
-    const handleGoogleSignIn = async () => {
-        try {
-            await GoogleSignin.hasPlayServices();
-            const userInfo = await GoogleSignin.signIn();
-            sendToBackend(userInfo);
-            console.log(userInfo);
-        } catch (error) {
-            console.error(error);
-        }
-    };
+    // const handleGoogleSignIn = async () => {
+    //     try {
+    //         await GoogleSignin.hasPlayServices();
+    //         const userInfo = await GoogleSignin.signIn();
+    //         sendToBackend(userInfo);
+    //         console.log(userInfo);
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // };
 
-    const sendToBackend = async (userInfo) => {
-        const idToken = await GoogleSignin.getTokens();
-        try {
-            const response = await axios.post('https://diplomawork-production.up.railway.app/auth/google', {
-                idToken: idToken.idToken
-            });
-            console.log('User is authenticated', response.data);
-        } catch (error) {
-            console.error('Failed to authenticate', error.response);
-        }
-    };
+    // const sendToBackend = async (userInfo) => {
+    //     const idToken = await GoogleSignin.getTokens();
+    //     try {
+    //         const response = await axios.post('https://diplomawork-production.up.railway.app/auth/verify_token', {
+    //             idToken: idToken.idToken
+    //         });
+    //         console.log('User is authenticated', response.data);
+    //     } catch (error) {
+    //         console.error('Failed to authenticate', error.response);
+    //     }
+    // };
     
+    
+const handleGoogleSignIn = async () => {
+    try {
+        await GoogleSignin.hasPlayServices();
+        const userInfo = await GoogleSignin.signIn();
+        const tokens = await GoogleSignin.getTokens();
+        sendTokenToBackend(tokens.idToken);
+    } catch (error) {
+        console.error('Google sign-in error:', error);
+    }
+};
+
+const sendTokenToBackend = async (idToken) => {
+    try {
+        const response = await axios.post('https://diplomawork-production.up.railway.app/auth/verify_token', {
+            idToken: idToken
+        });
+        handleBackendResponse(response.data);
+        console.log(response.data);
+    } catch (error) {
+        console.error('Failed to send token to backend:', error.response?.data || error.message);
+    }
+};
+
+const handleBackendResponse = (data) => {
+    if (data.token) {
+        console.log('Authentication successful:', data);
+        // Сохраните токен и перенаправьте пользователя, например, на главный экран
+    } else {
+        console.error('Authentication failed:', data.message);
+    }
+};
     
     
 

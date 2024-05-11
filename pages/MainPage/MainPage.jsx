@@ -66,34 +66,28 @@ export function MainPage(){
   const [weather, setWeather] = useState();
   const [city, setCity] = useState();
   const [images, setImages] = useState([]);
-  const scrollViewRef = useRef(null); // Ссылка на ScrollView
+  const scrollViewRef = useRef(null); 
   const [scrollIndex, setScrollIndex] = useState(0);
 
+//движение картинок через интервал 
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//         if (scrollViewRef.current) {
+//             let newScrollIndex = scrollIndex + 1;
+//             if (newScrollIndex >= images.length) {
+//                 newScrollIndex = 0; // Сброс индекса, если достигли последнего изображения
+//             }
+//             scrollViewRef.current.scrollTo({ x: width * newScrollIndex, animated: true });
+//             setScrollIndex(newScrollIndex); // Обновление индекса прокрутки
+//         }
+//     }, 5000); // Прокрутка каждые 5000 мс (5 секунд)
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-        if (scrollViewRef.current) {
-            let newScrollIndex = scrollIndex + 1;
-            if (newScrollIndex >= images.length) {
-                newScrollIndex = 0; // Сброс индекса, если достигли последнего изображения
-            }
-            scrollViewRef.current.scrollTo({ x: width * newScrollIndex, animated: true });
-            setScrollIndex(newScrollIndex); // Обновление индекса прокрутки
-        }
-    }, 5000); // Прокрутка каждые 5000 мс (5 секунд)
-
-    return () => clearInterval(interval); // Очистка интервала при размонтировании компонента
-}, [scrollIndex, images.length]); 
+//     return () => clearInterval(interval); // Очистка интервала при размонтировании компонента
+// }, [scrollIndex, images.length]); 
 
 
   useEffect(() => {
     const fetchImages = async () => {
-        // const token = await AsyncStorage.getItem('access_token');
-        // if (!token) {
-        //     console.log('No user token found');
-        //     return;
-        // }
-
         try {
             const token = await AsyncStorage.getItem('access_token');
             const response = await axios.get('https://diplomawork-production.up.railway.app/images/today', {
@@ -133,21 +127,6 @@ export function MainPage(){
     }
   }, [coordinates]);
 
-  
-// const renderItem = ({ item }) => (
-//   <View style={s.carousel_box}>
-//       <Image style={s.image} source={{ uri: item.image_url }} />
-//       {/* <Text style={s.label}>{item.description}</Text> */}
-//   </View>
-// );
-
-
-
-// const renderItem = ({ item }) => (
-//   <View style={s.carousel_box}>
-//       <Image style={s.image} source={{ uri: item.image_url }} />
-//   </View>
-// );
 
 
 
@@ -172,45 +151,25 @@ export function MainPage(){
                  <Txt>
                       Liked outfits for today
                  </Txt>
-                 {/* {images.length > 0 ? (
-    <Image style={s.img_carousel} source={{ uri: images[0].image_url }} />
-) : (
-    <Text>Загрузка изображения...</Text>
-)} */}
-                {/* <Image style={s.img_carousel} source={mainPageExample}/> */}
-                {/* {images.length > 0 ? (
-    <Carousel
-      data={images}
-      renderItem={renderItem}
-      sliderWidth={300}
-      itemWidth={300}
-    />
-) : (
-    <Text>Загрузка изображений...</Text>
-)} */}
-
-{/* <View style={s.imagesContainer}>  // Контейнер для изображений */}
-<ScrollView
+              <ScrollView
                 ref={scrollViewRef}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 style={s.scrollViewStyle}
-                pagingEnabled={true} // Добавление этого свойства обеспечивает остановку прокрутки на каждом "странице"
-            >
+                pagingEnabled={true} 
+              >
                 {images.length > 0 ? (
                     images.map((img, index) => (
                         <Image 
                             key={index}
-                            style={ s.img_carousel} // Установка ширины изображения равной ширине экрана
+                            style={ s.img_carousel} 
                             source={{ uri: img.image_url }}
                         />
                     ))
                 ) : (
-                    <Text>Загрузка изображений...</Text>
+                    <Text>Images loading...</Text>
                 )}
             </ScrollView>
-        {/* </View> */}
-
             </View>
             <View  style={s.btn_box}>
             <ButtonBig style={{backgroundColor:"#22668D"}}
