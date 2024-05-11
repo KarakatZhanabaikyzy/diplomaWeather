@@ -68,7 +68,6 @@ export function LoginPage(){
         if (response.status === 200) {
             console.log("Successfully logged in to the system:", data);
             performLoginRequest(token);
-            // Alert.alert("Success", "You have successfully logged in!");
         } else {
             Alert.alert("Error", data.msg || "Something went wrong");
         }
@@ -80,7 +79,7 @@ export function LoginPage(){
 };
 
 GoogleSignin.configure({
-  webClientId: '988664370161-svs8r2t1cj2kpec0680vpe1uggtfo2t0.apps.googleusercontent.com', // Этот ID клиента вы получите в Google Cloud Console.
+  webClientId: '988664370161-svs8r2t1cj2kpec0680vpe1uggtfo2t0.apps.googleusercontent.com', 
 });
 
 const handleGoogleSignIn = async () => {
@@ -88,7 +87,7 @@ const handleGoogleSignIn = async () => {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       const idToken = userInfo.idToken;
-      sendTokenToServer(idToken); // Отправить токен на сервер для валидации
+      sendTokenToServer(idToken); 
   } catch (error) {
       console.error(error);
   }

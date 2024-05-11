@@ -14,7 +14,6 @@ import { getWeatherInterpretation } from "..//../meteo-utils";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
-// import Carousel from 'react-native-snap-carousel';
 
 const { width } = Dimensions.get('window'); 
 
@@ -75,14 +74,14 @@ export function MainPage(){
 //         if (scrollViewRef.current) {
 //             let newScrollIndex = scrollIndex + 1;
 //             if (newScrollIndex >= images.length) {
-//                 newScrollIndex = 0; // Сброс индекса, если достигли последнего изображения
+//                 newScrollIndex = 0; 
 //             }
 //             scrollViewRef.current.scrollTo({ x: width * newScrollIndex, animated: true });
 //             setScrollIndex(newScrollIndex); // Обновление индекса прокрутки
 //         }
 //     }, 5000); // Прокрутка каждые 5000 мс (5 секунд)
 
-//     return () => clearInterval(interval); // Очистка интервала при размонтировании компонента
+//     return () => clearInterval(interval);
 // }, [scrollIndex, images.length]); 
 
 
