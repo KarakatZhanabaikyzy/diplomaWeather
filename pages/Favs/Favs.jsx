@@ -137,20 +137,6 @@ export function Favs(){
            numColumns={2}
            ListHeaderComponent={() => (
         <View>
-        <TopHeader>
-            <View style={s.headerStyle}>
-                <View style={s.img_box}>
-                   <Image style={s.girlWindy} source={welcomePic}/>
-                </View>
-            <View>
-            <Txt style={s.txt_choice}>Your liked looks</Txt>
-            <Txt style={s.txt_choice}>to look awesome!</Txt>
-            <ButtonFavs onPress={() => nav.navigate("TabNav", {})}>
-              <Txt style={s.txt_favs}>Back</Txt>
-            </ButtonFavs>
-            </View>
-            </View>
-        </TopHeader>
         </View>
         )}
         />

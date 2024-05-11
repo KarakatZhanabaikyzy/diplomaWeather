@@ -3,7 +3,7 @@ import { ActivityIndicator } from 'react-native';
 import {s} from "./StyleChoice.style";
 import { TopHeader } from "../../components/TopHeader/TopHeader";
 import { Txt } from "../../components/Txt/Txt";
-import { RecommendationPage } from '../RecommendationPage/RecommendationPage';
+import { RecommendationPage } from '../CategoryPage/CategoryPage';
 import rainGirl from "..//../assets/pics/rainGirl.png";
 import {useEffect, useState } from "react";
 import { ButtonSmall } from '../../components/ButtonSmall/ButtonSmall';
@@ -11,6 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
 import mainPageExample from "..//../assets/mainPageExample.png";
+import { CategoryPage } from '../CategoryPage/CategoryPage';
 
 
 
@@ -47,7 +48,7 @@ export function StyleChoice(){
   useEffect(() => {
     if (shouldNavigate) {
       console.log("Navigating with imageURL:", imageURL);
-      nav.navigate("RecommendationPage", {imageUrl:  imageURL, imageID: imageId});
+      nav.navigate("CategoryPage", {imageUrl:  imageURL, imageID: imageId});
       setShouldNavigate(false); // Сброс после навигации
     }
   }, [shouldNavigate,imageURL]); // Эффект срабатывает при изменении shouldNavigate

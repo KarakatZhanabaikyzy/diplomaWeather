@@ -6,7 +6,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { MainPage } from "../MainPage/MainPage";
 import { SvgXml } from 'react-native-svg';
-import { RecommendationPage } from "../RecommendationPage/RecommendationPage";
+import { CategoryPage, RecommendationPage } from "../CategoryPage/CategoryPage";
 import { ProfilePage } from "../ProfilePage/ProfilePage";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
@@ -95,8 +95,8 @@ export function TabNav(){
                   }}
                  />
             <Tab.Screen 
-                name="RecommendationPage" 
-                component={RecommendationPage} 
+                name="CategoryPage" 
+                component={CategoryPage} 
                 options={{
                     tabBarIcon: ({ focused }) => (
                       <Icon2 active={focused} />

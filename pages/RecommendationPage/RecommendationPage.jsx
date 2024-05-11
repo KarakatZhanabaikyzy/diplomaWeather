@@ -1,9 +1,9 @@
-import {View, Text, Image,Alert} from "react-native";
-import {s} from "./Recommendation.style"
+import {View, Text, Image,Alert, TouchableOpacity} from "react-native";
+import {s} from "./RecommendationPage.style";
 import { TopHeader } from "../../components/TopHeader/TopHeader";
 import { Txt } from "../../components/Txt/Txt";
 import welcomePic from "..//../assets/pics/girlWindy.png";
-import {ButtonFavs} from "..//../components/ButtonFavs/ButtonFavs";
+import {ButtonFavs} from "../../components/ButtonFavs/ButtonFavs";
 import mainPageExample from "..//../assets/mainPageExample.png";
 import { ButtonLike } from "../../components/ButtonLike/ButtonLike";
 import { useNavigation } from "@react-navigation/native";
@@ -13,7 +13,7 @@ import { Favs } from "../Favs/Favs";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
 
-export function RecommendationPage( { route } ){
+export function RecommendationPage( {route} ){
 
     // Теперь вы можете использовать imageUrl как { uri: imageUrl }
     // Используйте mainPageExample как fallback, если imageUrl не определён
@@ -28,8 +28,10 @@ export function RecommendationPage( { route } ){
     };
 
     
-    const { imageUrl } = route.params;
-    const { imageID } = route.params;
+    const imageUrl = route?.params?.imageUrl || "https://diplomawork-production.up.railway.app/static/out/txt2img_2311103220.png";
+    const imageID = route?.params?.imageID || "663f6365ef0536edb90dedd8";
+
+    const nav = useNavigation();
    
 
 
@@ -57,36 +59,14 @@ export function RecommendationPage( { route } ){
         console.log("Image ID:", imageID);
       }
 
-    const nav = useNavigation();
-
 
      return(
-        <View style={s.main_box}>
-            <TopHeader>
-                <View style={s.headerStyle}>
-                <View style={s.img_box}>
-                    <Image style={s.girlWindy} source={welcomePic}/>
-                </View>
-                <View>
-                    <Txt style={s.txt_choice}>Bad weather not excuse </Txt>
-                    <Txt style={s.txt_choice}>to not wear your best </Txt>
-                    <Txt style={s.txt_choice}>look!</Txt>
-                    <ButtonFavs
-                     onPress={()=> nav.navigate("Favs", {})}>
-                    <Txt style={s.txt_favs}>Favs</Txt>
-                </ButtonFavs> 
-                </View>
-                </View> 
-            </TopHeader>
             <View style={s.recommendation_box}>
                  <Txt style={{fontSize: 27}}>
                       My recommendation
                  </Txt>
                  <View>
-                {/* <ButtonLike
-                 onPress={()=> nav.navigate("StyleChoice", {})}/> */}
                  </View>
-                 {/* <Image style={s.img_carousel} source={{ uri: imageUrl }}/> */}
                  {
                     console.log("Тип imageUrl:", typeof imageUrl)
                  }
@@ -113,6 +93,6 @@ export function RecommendationPage( { route } ){
                     </ButtonSmall>
                  </View>
             </View>
-        </View>
+       
      );
 };
