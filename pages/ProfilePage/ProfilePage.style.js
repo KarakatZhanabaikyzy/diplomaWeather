@@ -70,6 +70,7 @@ export const s = StyleSheet.create({
       root:{
         alignSelf: "stretch",
         justifyContent: "center",
+        
     },
     input:{
         backgroundColor: "#EFEFEF",
@@ -77,6 +78,7 @@ export const s = StyleSheet.create({
         borderRadius: 15,
         flexDirection:"row",
         justifyContent:"space-evenly",
+        paddingLeft: 13
     },
 
     inputFeedback:{

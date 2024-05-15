@@ -1,6 +1,10 @@
 import { StyleSheet } from "react-native";
 
 export const s = StyleSheet.create({
+  flatlistContainer: {
+    flex: 1, // This makes sure the container takes up all available space
+    padding: 10, // Optional: adds some padding around the FlatList
+  },
     headerStyle:{
         flexDirection:"row",
         justifyContent:"flex-start",
@@ -41,30 +45,42 @@ export const s = StyleSheet.create({
     fontWeight:"bold",
     color: 'black',
   },
+  flatlistContainer:{
+    // backgroundColor:"blue",
+    width: 380,
+    flexDirection:"row",
+    marginLeft: 15,
+    marginRight: 15,
+    marginTop: 5
+    
+    },
   itemContainer: {
+    justifyContent:"center",
     flexDirection: 'column',
     alignItems: 'center',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    padding: 8,
+    marginLeft: 6
   },
   selectedItem: {
     backgroundColor: 'lightgrey',
+    borderRadius: 15
     
 
   },
   itemImage: {
-    width: 180,
-    height: 180,
-    borderRadius: 25,
-    marginRight: 10,
+    width: 165,
+    height: 165,
+    borderRadius: 15,
+    padding: 5
   },
   itemLabel: {
-    fontSize: 16,
+    fontSize: 20,
     color: '#333',
   },
   txt_style:{
     marginVertical:10,
     marginLeft: 92,
+    flexDirection:"row",
     alignItems:"center",
   },
   buttons_box:{

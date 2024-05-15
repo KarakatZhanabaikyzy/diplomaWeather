@@ -20,7 +20,7 @@ export function StyleChoice(){
 
   const nav = useNavigation();
 
-  const [category, setCategory] = useState('Sporty');
+  const [category, setCategory] = useState('Casual');
   const [selectedItem, setSelectedItem] = useState(null);
   const [location, setLocation] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -33,25 +33,24 @@ export function StyleChoice(){
   // const [clothingStyle, setClothingStyle] = useState(category);
 
   useEffect(() => {
-    console.log("Updated imageURL:", imageURL);
-    console.log("Тип imageURL:", typeof imageURL);
-    // Здесь можно выполнять другие действия, зависящие от обновления imageURL
+    // console.log("Updated imageURL:", imageURL);
+    // console.log("Тип imageURL:", typeof imageURL);
   }, [imageURL]);  
 
   useEffect(() => {
-    if (imageURL !== mainPageExample) { // Проверьте, что imageURL действительно изменился
+    if (imageURL !== mainPageExample) { 
       console.log("newwwwwwww:", imageURL);
       setShouldNavigate(true);
     }
-  }, [imageURL]); // Эффект срабатывает при изменении imageURL
+  }, [imageURL]); 
   
   useEffect(() => {
     if (shouldNavigate) {
       console.log("Navigating with imageURL:", imageURL);
       nav.navigate("CategoryPage", {imageUrl:  imageURL, imageID: imageId});
-      setShouldNavigate(false); // Сброс после навигации
+      setShouldNavigate(false);
     }
-  }, [shouldNavigate,imageURL]); // Эффект срабатывает при изменении shouldNavigate
+  }, [shouldNavigate,imageURL]);
   
   
 
@@ -76,11 +75,11 @@ export function StyleChoice(){
       
       if (response.data.message === 'Image generated successfully' && response.data.image_url) {
         console.log("URL:", response.data.image_url);
-        setLocation('');  // Сбросить location после успешной отправки //проблема again
+        setLocation('');  // Сбросить location после отправки //проблема again
         setImageURL(response.data.image_url);
         setImageId(response.data.image_id);
 
-        // setShouldNavigate(true); // Подготовка к навигации
+        // setShouldNavigate(true); 
 
         console.log("URL second:", response.data.image_url);
         setIsLoading(false); 
@@ -109,35 +108,41 @@ export function StyleChoice(){
     
   }
 
-  // useEffect(() => {
-  //   if (shouldNavigate && imageURL) {
-  //     console.log("Navigating with imageURL:", imageURL);
-  //     nav.navigate("RecommendationPage", { imageUrl: imageURL });
-  //     setShouldNavigate(false); // Сброс после навигации
-  //   }
-  // }, [shouldNavigate, imageURL]);
-
- 
-  
 
 
   const categoriesData = {
     Casual: [
-      { id: '1', label: 'to cinema', image: require('..//../assets/categories/casual1.png')},
-      { id: '2', label: 'to picnic', image: require('..//../assets/categories/casual2.png') },
+      { id: '1', label: 'Work', image: require('..//../assets/categories/casuall1.png')},
+      { id: '2', label: 'Meet-up', image: require('..//../assets/categories/casuall2.png') },
+      { id: '3', label: 'Walk', image: require('..//../assets/categories/casuall3.png') },
+      { id: '4', label: 'Picnic', image: require('..//../assets/categories/casuall4.png') },
+      { id: '5', label: 'Coffee shop', image: require('..//../assets/categories/casuall5.png') },
+      { id: '6', label: 'Movie theater', image: require('..//../assets/categories/casuall6.png') },
       
     ],
     Business: [
-      { id: '3', label: 'to work', image: require('..//../assets/categories/business1.png') },
-      { id: '4', label: 'Item 4', image: require('..//../assets/categories/business2.png') },
+      { id: '7', label: 'Office', image: require('..//../assets/categories/businesss1.png') },
+      { id: '8', label: 'Conference', image: require('..//../assets/categories/businesss2.png') },
+      { id: '9', label: 'Meetings', image: require('..//../assets/categories/businesss3.png') },
+      { id: '10', label: 'Job interview', image: require('..//../assets/categories/businesss4.png') },
+      { id: '11', label: 'Business dinner', image: require('..//../assets/categories/businesss5.png') },
+      { id: '12', label: 'Court appearance', image: require('..//../assets/categories/businesss6.png') },
     ],
     Elegant: [
-      { id: '5', label: 'Item 5', image: require('..//../assets/categories/elegant1.png') },
-      { id: '6', label: 'Item 6', image: require('..//../assets/categories/elegant2.png') },
+      { id: '13', label: 'Ball', image: require('..//../assets/categories/business1.png') },
+      { id: '14', label: 'Wedding', image: require('..//../assets/categories/business2.png') },
+      { id: '15', label: 'Theater', image: require('..//../assets/categories/casual2.png') },
+      { id: '16', label: 'Restaurant', image: require('..//../assets/categories/casual2.png') },
+      { id: '17', label: 'Cultural event', image: require('..//../assets/categories/casual2.png') },
+      { id: '18', label: 'Museum', image: require('..//../assets/categories/casual2.png') },
     ],
     Sporty: [
-      { id: '7', label: 'to airport', image: require('..//../assets/categories/sporty1.png') },
-      { id: '8', label: 'Item 8', image: require('..//../assets/categories/sporty2.png') },
+      { id: '19', label: 'Gym', image: require('..//../assets/categories/sporty1.png') },
+      { id: '20', label: 'Outdoor activitie', image: require('..//../assets/categories/sporty2.png') },
+      { id: '21', label: 'Sport event', image: require('..//../assets/categories/sporty2.png') },
+      { id: '22', label: 'Hangout', image: require('..//../assets/categories/sporty2.png') },
+      { id: '23', label: 'Travel', image: require('..//../assets/categories/sporty2.png') },
+      { id: '24', label: 'Home', image: require('..//../assets/categories/sporty2.png') }
     ],
   };
 
@@ -146,22 +151,11 @@ export function StyleChoice(){
     setCategory(category);
   };
 
-  // const handleItemPress = (id) => {
-  //   setSelectedItem((prevSelectedItem) => {
-  //     if (prevSelectedItem === id) {
-  //       setLocation(item.label);
-  //       // return null;
-  //       console.log("LOCATION:", location)
-  //     } else {
-  //       return id;
-  //     }
-  //   });
-  // };
 
   const handleItemPress = (item) => {
     if (selectedItem && selectedItem.id === item.id) {
-      setLocation('');  // Очищаем location, если пользователь кликнул по уже выбранному элементу повторно
-      setSelectedItem(null);  // Снимаем выбор элемента
+      setLocation('');  
+      setSelectedItem(null);  
     } else {
       setLocation(item.label);  
       setSelectedItem(item); 
@@ -169,29 +163,9 @@ export function StyleChoice(){
   };
   
 
-  
-  // const handleItemPress = (item) => {
-  //   setSelectedItem((prevSelectedItem) => {
-  //     if (prevSelectedItem === item) {
-  //       setLocation(item.label);
-  //       // return null;
-  //       console.log("LOCATION:", location)
-  //     } else {
-  //       console.log("pizdes")
-  //     }
-  //   });
-  // };
-
-
-  // const handleItemPress = (item) => {
-  //   setLocation(item.label);  // Сохраняем только label выбранного элемента
-  // };
-  
-
-
 
      return(
-        <View>
+      <View style={{flex: 1}}>
           {isLoading && (
             <View style={s.loading}>
                 <ActivityIndicator size="large" color="white" />
@@ -211,7 +185,7 @@ export function StyleChoice(){
                 </View>  
             </TopHeader>
             <Txt style={s.txt_style}>Choose where you go</Txt>
-    <View>
+     <View style={{flex: 1}}>
       <View style={s.categoryContainer}>
         {Object.keys(categoriesData).map((cat, index) => (
           <TouchableOpacity key={index} onPress={() => handleCategoryPress(cat)}>
@@ -221,9 +195,11 @@ export function StyleChoice(){
           </TouchableOpacity>
         ))}
       </View>
+      <View style={s.flatlistContainer}>
       <FlatList
       data={categoriesData[category]} 
       keyExtractor={(item) => item.id}
+      numColumns={2}
       renderItem={({ item }) => (
         <TouchableOpacity onPress={() => handleItemPress(item)}>
           <View style={[s.itemContainer,selectedItem && selectedItem.id === item.id && s.selectedItem]}>
@@ -234,6 +210,7 @@ export function StyleChoice(){
       )} 
      
       />
+      </View>
     </View>
     <View style={s.buttons_box}>
                     <ButtonSmall style={s.back_btn}

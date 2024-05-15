@@ -53,27 +53,6 @@ export function Favs(){
         nav.navigate("StyleChoice"); 
     };
 
-   
-    //         {/* <Text style={s.description}>{item.description}</Text> */}
- 
-
-    // const renderItem = ({ item }) => {
-    //     if (item.isDefault) {
-    //         return (
-    //             <TouchableOpacity onPress={handlePressDefaultImage}>
-    //                 <View style={s.imageContainer}>
-    //                     <Image style={s.image} source={item.source} />
-    //                 </View>
-    //             </TouchableOpacity>
-    //         );
-    //     } else {
-    //         return (
-    //             <View style={s.imageContainer}>
-    //                 <Image style={s.image} source={{ uri: item.image_url }} />
-    //             </View>
-    //         );
-    //     }
-    // };
 
     const renderItem = ({ item, index }) => {
         const onLongPress = () => {
@@ -118,7 +97,6 @@ export function Favs(){
             });
     
             if (response.status === 200) {
-                // Update the state to remove the item from the list
                 setFavorites(favorites.filter((_, favIndex) => favIndex !== index));
                 Alert.alert("Deleted", "The image has been successfully deleted.");
             }

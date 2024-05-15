@@ -26,8 +26,8 @@ export function CategoryPage({ route }){
     }
   };
 
-  console.log("category props: ", route.params);
-  console.log("category route: ", route);
+  // console.log("category props: ", route.params);
+  // console.log("category route: ", route);
   const { imageUrl, imageID } = route.params || {
     imageUrl: "https://diplomawork-production.up.railway.app/static/out/txt2img_2311103220.png",
     imageID: "663f6365ef0536edb90dedd8"

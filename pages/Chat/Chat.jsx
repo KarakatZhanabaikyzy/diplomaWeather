@@ -13,7 +13,7 @@ import { Favs } from "../Favs/Favs";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
 import avatarUser from "..//../assets/user.png";
-import avatarBot from "..//../assets/ava.png";
+import avatarBot from "..//../assets/chat.png";
 
 export function Chat(){
 
@@ -23,10 +23,7 @@ export function Chat(){
 
     const sendMessage = async () => {
      try {
-          // Получение токена из AsyncStorage
           const token = await AsyncStorage.getItem('access_token');
-  
-          // Проверка наличия токена перед отправкой запроса
           if (!token) {
               console.error('JWT token not found');
               return;
@@ -40,11 +37,12 @@ export function Chat(){
               }
           });
           
+          console.log("sent message: ", message);
           const receivedMessage = response.data.description;
           console.log("description message: ", response.data.description);
           setMessages(prevMessages => 
-               [...prevMessages, { type: 'sent', text: message, avatar: '..//../assets/user.png', name: 'You' }, 
-               { type: 'received', text: receivedMessage, avatar: '..//../assets/ava.png', name: 'Weather Wardrobe' }]);
+               [...prevMessages, { type: 'sent', text: message, avatar: avatarUser, name: 'You' }, 
+               { type: 'received', text: receivedMessage, avatar: avatarBot, name: 'Weather Wardrobe' }]);
           setMessage('');
       } catch (error) {
           console.error('Error sending message:', error);
@@ -53,22 +51,21 @@ export function Chat(){
    
 
      return(
-          <View style={s.recommendation_box}>
-          <Text style={{ fontSize: 27 }}>My recommendation</Text>
-          {/* <ScrollView style={{ flex: 1 }}>
-              {messages.map((msg, index) => (
-                  <View key={index} style={{ margin: 10, padding: 10, backgroundColor: msg.type === 'sent' ? 'lightblue' : 'lightgreen' }}>
-                      <Text>{msg.text}</Text>
-                  </View>
-              ))}
-          </ScrollView> */}
+          <View style={s.chat_box}>
+          <Text style={s.header_txt}>
+            WeatherWardrobe Chat
+          </Text>
            <ScrollView style={{ flex: 1 }}>
                 {messages.map((msg, index) => (
                     <View key={index} style={{ margin: 10, padding: 10, flexDirection: 'row', alignItems: 'center' }}>
-                        <Image source={msg.avatar} style={{ width: 40, height: 40, borderRadius: 25 }} />
+                        {/* <Image source={msg.avatar} style={{ width: 40, height: 40, borderRadius: 25 }} /> */}
+                        <Image 
+                        source={msg.type === 'sent' ? avatarUser : avatarBot} 
+                        style={{ width: 40, height: 40, borderRadius: 25 }} 
+                    />
                         <View style={{ marginLeft: 10 , width: 280}}>
-                            <Text style={{ fontWeight: 'bold' }}>{msg.name}</Text>
-                            <Text style={{ backgroundColor: msg.type === 'sent' ? 'lightblue' : 'lightgreen' }}>{msg.text}</Text>
+                            <Text style={{ fontWeight: 'bold', fontSize: 15, color: msg.type === 'sent' ? 'black' : '#22668D'}}>{msg.name}</Text>
+                            <Text style={{ color: msg.type === 'sent' ? 'black' : '#22668D' }}>{msg.text}</Text>
                         </View>
                     </View>
                 ))}
@@ -84,7 +81,7 @@ export function Chat(){
                    style={s.btn_send}
                    onPress={sendMessage}
                >
-               <Text style={s.btn_txt}>Send</Text>
+               <Text style={s.btn_txt}>↑</Text>
                </TouchableOpacity>
           </View>
       </View>

@@ -2,17 +2,22 @@ import { StyleSheet } from "react-native";
 
 export const s = StyleSheet.create({
  
-   recommendation_box:{
+   chat_box:{
     alignItems:"center",
     height:500,
     marginTop: 15,
     marginBottom: 12,
     width: 380,
-   backgroundColor: "#FFFADD",
+    backgroundColor: "#FFFADD",
     justifyContent:"space-between",
     borderRadius: 15
     
 },
+   header_txt:{
+   fontSize: 20, 
+   marginTop: 10,
+   color: "#22668D",
+   },
    txt_box: {
     //  backgroundColor:"red",
      width: 380,
@@ -29,6 +34,7 @@ export const s = StyleSheet.create({
     borderRadius: 15,
     flexDirection:"row",
     justifyContent:"space-evenly",
+    paddingLeft: 13
 
 
    },
@@ -36,16 +42,18 @@ export const s = StyleSheet.create({
     backgroundColor:"#22668D",
     borderRadius: 15,
     width: 60,
-    height: 50
+    height: 50,
+    paddingHorizontal: 2,
+    paddingBottom: 15,
+    alignItems:"center",
+    justifyContent:"center",
+
    },
    btn_txt:{
-    fontSize: 15    , 
-    // fontWeight: "bold",
-    // flexDirection:"row",
+    fontSize: 35    , 
+    fontWeight: "bold",
     alignItems: "center",
-    // justifyContent:"center",
-    marginHorizontal: 3,
-    marginVertical: 1
+    color: "white"
    }
 
 });
