@@ -129,20 +129,20 @@ export function StyleChoice(){
       { id: '12', label: 'Court appearance', image: require('..//../assets/categories/businesss6.png') },
     ],
     Elegant: [
-      { id: '13', label: 'Ball', image: require('..//../assets/categories/business1.png') },
-      { id: '14', label: 'Wedding', image: require('..//../assets/categories/business2.png') },
-      { id: '15', label: 'Theater', image: require('..//../assets/categories/casual2.png') },
-      { id: '16', label: 'Restaurant', image: require('..//../assets/categories/casual2.png') },
-      { id: '17', label: 'Cultural event', image: require('..//../assets/categories/casual2.png') },
-      { id: '18', label: 'Museum', image: require('..//../assets/categories/casual2.png') },
+      { id: '13', label: 'Ball', image: require('..//../assets/categories/elegantt1.png') },
+      { id: '14', label: 'Wedding', image: require('..//../assets/categories/elegantt2.png') },
+      { id: '15', label: 'Theater', image: require('..//../assets/categories/elegantt3.png') },
+      { id: '16', label: 'Restaurant', image: require('..//../assets/categories/elegantt4.png') },
+      { id: '17', label: 'Cultural event', image: require('..//../assets/categories/elegantt5.png') },
+      { id: '18', label: 'Museum', image: require('..//../assets/categories/elegantt6.png') },
     ],
     Sporty: [
-      { id: '19', label: 'Gym', image: require('..//../assets/categories/sporty1.png') },
-      { id: '20', label: 'Outdoor activitie', image: require('..//../assets/categories/sporty2.png') },
-      { id: '21', label: 'Sport event', image: require('..//../assets/categories/sporty2.png') },
-      { id: '22', label: 'Hangout', image: require('..//../assets/categories/sporty2.png') },
-      { id: '23', label: 'Travel', image: require('..//../assets/categories/sporty2.png') },
-      { id: '24', label: 'Home', image: require('..//../assets/categories/sporty2.png') }
+      { id: '19', label: 'Gym', image: require('..//../assets/categories/sportyy1.png') },
+      { id: '20', label: 'Outdoor activitie', image: require('..//../assets/categories/sportyy2.png') },
+      { id: '21', label: 'Sport event', image: require('..//../assets/categories/sportyy3.png') },
+      { id: '22', label: 'Hangout', image: require('..//../assets/categories/sportyy4.png') },
+      { id: '23', label: 'Travel', image: require('..//../assets/categories/sportyy5.png') },
+      { id: '24', label: 'Home', image: require('..//../assets/categories/sportyy6.png') }
     ],
   };
 
