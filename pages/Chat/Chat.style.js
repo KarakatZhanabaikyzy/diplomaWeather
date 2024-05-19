@@ -13,6 +13,14 @@ export const s = StyleSheet.create({
     borderRadius: 15
     
 },
+   header_container:{
+   backgroundColor:"#CADCE7",
+   width: 380,
+   borderTopLeftRadius: 15,
+   borderTopRightRadius: 15,
+   height: 40,
+   alignItems: "center"
+   },
    header_txt:{
    fontSize: 20, 
    marginTop: 10,

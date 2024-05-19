@@ -7,3 +7,4 @@ export const s = StyleSheet.create({
         fontFamily: 'Alata-Regular',
    },
 });
+

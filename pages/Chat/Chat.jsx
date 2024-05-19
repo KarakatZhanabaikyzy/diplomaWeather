@@ -20,12 +20,17 @@ export function Chat(){
     const nav = useNavigation();
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [typingAnimation, setTypingAnimation] = useState('');
+
 
     const sendMessage = async () => {
+        setIsLoading(true); 
      try {
           const token = await AsyncStorage.getItem('access_token');
           if (!token) {
               console.error('JWT token not found');
+              setIsLoading(false);
               return;
           }
   
@@ -47,14 +52,38 @@ export function Chat(){
       } catch (error) {
           console.error('Error sending message:', error);
       }
+        setIsLoading(false); 
  };
+
+ useEffect(() => {
+    let intervalId;
+
+    if (isLoading) {
+        intervalId = setInterval(() => {
+            setTypingAnimation(prev => {
+                if (prev.length < 3) {
+                    return prev + '.';
+                } else {
+                    return '';
+                }
+            });
+        }, 500); 
+    } else {
+        setTypingAnimation(''); 
+    }
+
+    return () => clearInterval(intervalId); 
+}, [isLoading]);
+
    
 
      return(
           <View style={s.chat_box}>
-          <Text style={s.header_txt}>
-            WeatherWardrobe Chat
-          </Text>
+            <View style={s.header_container}>
+               <Text style={s.header_txt}>
+                  WeatherWardrobe Chat
+               </Text>
+            </View>   
            <ScrollView style={{ flex: 1 }}>
                 {messages.map((msg, index) => (
                     <View key={index} style={{ margin: 10, padding: 10, flexDirection: 'row', alignItems: 'center' }}>
@@ -69,6 +98,13 @@ export function Chat(){
                         </View>
                     </View>
                 ))}
+
+                {isLoading && (
+        <View style={{ margin: 10, padding: 10, flexDirection: 'row', alignItems: 'center',  zIndex: 100 }}>
+            <Image source={avatarBot} style={{ width: 40, height: 40, borderRadius: 25 }} />
+            <Text style={{ marginLeft: 10, color: '#22668D' }}>{`Weather Wardrobe is typing${typingAnimation}`}</Text>
+        </View>
+    )}
             </ScrollView>
           <View style={s.txt_box}>
               <TextInput
