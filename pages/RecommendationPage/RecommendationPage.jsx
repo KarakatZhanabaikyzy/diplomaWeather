@@ -1,4 +1,5 @@
 import {View, Text, Image,Alert, TouchableOpacity} from "react-native";
+import { ActivityIndicator } from 'react-native';
 import {s} from "./RecommendationPage.style";
 import { TopHeader } from "../../components/TopHeader/TopHeader";
 import { Txt } from "../../components/Txt/Txt";
@@ -28,8 +29,17 @@ export function RecommendationPage( {route} ){
     };
 
     
-    const imageUrl = route?.params?.imageUrl || "https://diplomawork-production.up.railway.app/static/out/txt2img_2311103220.png";
-    const imageID = route?.params?.imageID || "663f6365ef0536edb90dedd8";
+    // const imageUrl = route?.params?.imageUrl || "https://diplomawork-production.up.railway.app/static/out/txt2img_2311103220.png";
+    // const imageID = route?.params?.imageID || "663f6365ef0536edb90dedd8";
+
+    const [imageUrl, setImageUrl] = useState( route?.params?.imageUrl || "https://diplomawork-production.up.railway.app/static/out/txt2img_2311103220.png");
+    const [imageID, setImageID] = useState(route?.params?.imageID || "663f6365ef0536edb90dedd8");
+
+    const locationRefresh =  route?.params?.locationRefresh || "Casual";
+    const categoryRefresh =  route?.params?.locationRefresh || "Meet-up";
+
+    const [isLoading, setIsLoading] = useState(false);
+
 
     const nav = useNavigation();
    
@@ -59,8 +69,45 @@ export function RecommendationPage( {route} ){
         console.log("Image ID:", imageID);
       }
 
+      async function refreshImage() {
+        setIsLoading(true); 
+        try {
+            const token = await AsyncStorage.getItem('access_token');
+            const response = await axios.post('https://diplomawork-production.up.railway.app/main_outfit', {
+                location: locationRefresh,  
+                clothing_style: categoryRefresh,  
+                save_to_favorites: true
+            }, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+    
+            if (response.data.message === 'Image generated successfully' && response.data.image_url) {
+              console.log("refreshed response: ", response.data.image_url);
+              console.log("LocationRefresh: ", locationRefresh);
+              console.log("CategoryRefresh: ",categoryRefresh )
+;                setImageUrl(response.data.image_url);
+                setImageID(response.data.image_id);
+            } else {
+                Alert.alert("Error", response.data.error || "Unknown error occurred");
+            }
+        } catch (error) {
+            console.error('Error on refreshing image:', error);
+            Alert.alert("Error", "Failed to refresh image");
+        }
+        setIsLoading(false);
+    }
+    
+
 
      return(
+      <View style={{flex: 1}}>
+          {isLoading && (
+            <View style={s.loading}>
+                <ActivityIndicator size="large" color="white" />
+            </View>
+          )}
             <View style={s.recommendation_box}>
                  <Txt style={{fontSize: 27}}>
                       My recommendation
@@ -82,7 +129,10 @@ export function RecommendationPage( {route} ){
                     )
                 }
                  <View style={s.buttons_box}>
-                    <ButtonSmall style={s.back_btn}>
+                    <ButtonSmall 
+                        style={s.back_btn}
+                        onPress={refreshImage}
+                        >
                         <Txt style={{color:"#22668D"}}>again</Txt>    
                     </ButtonSmall>
                     <ButtonSmall 
@@ -93,6 +143,6 @@ export function RecommendationPage( {route} ){
                     </ButtonSmall>
                  </View>
             </View>
-       
+       </View>
      );
 };

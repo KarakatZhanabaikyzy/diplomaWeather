@@ -8,15 +8,17 @@ import {useEffect, useState } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-// import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
+import { LoginPage } from "../LoginPage/LoginPage";
 
 export function ProfilePage(){
-    // const nav = useNavigation();
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [city, setCity] = useState('');
     const [feedback, setFeedback] = useState('');
+
+    const nav = useNavigation();
 
 
     useEffect(() => {
@@ -78,6 +80,24 @@ export function ProfilePage(){
             Alert.alert("Error", "Failed to send feedback");
         }
     }
+
+    async function handleLogout() {
+        try {
+            const token = await AsyncStorage.getItem('access_token');
+            await axios.post('https://diplomawork-production.up.railway.app/logout', {}, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            await AsyncStorage.removeItem('access_token'); 
+            Alert.alert("Logged out", "You have successfully logged out.");
+            nav.navigate("LoginPage"); 
+        } catch (error) {
+            console.error('Logout failed:', error);
+            Alert.alert("Error", "Failed to logout");
+        }
+    }
+    
 
 
     return (
@@ -152,7 +172,10 @@ export function ProfilePage(){
                 </View>
                    </View>
                 
-                     <ButtonBig style={s.button_ext}>
+                     <ButtonBig 
+                        style={s.button_ext}
+                        onPress={handleLogout}
+                        >
                         <Text style={{color:"white", fontSize: 20}} >
                             Exit
                         </Text>

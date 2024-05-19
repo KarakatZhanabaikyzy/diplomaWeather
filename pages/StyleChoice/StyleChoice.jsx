@@ -47,7 +47,13 @@ export function StyleChoice(){
   useEffect(() => {
     if (shouldNavigate) {
       console.log("Navigating with imageURL:", imageURL);
-      nav.navigate("CategoryPage", {imageUrl:  imageURL, imageID: imageId});
+      nav.navigate("CategoryPage", {
+        imageUrl:  imageURL, 
+        imageID: imageId,
+        locationRefresh: location,
+        categoryRefresh: category
+
+      });
       setShouldNavigate(false);
     }
   }, [shouldNavigate,imageURL]);
@@ -75,7 +81,7 @@ export function StyleChoice(){
       
       if (response.data.message === 'Image generated successfully' && response.data.image_url) {
         console.log("URL:", response.data.image_url);
-        setLocation('');  // Сбросить location после отправки //проблема again
+        // setLocation('');  // Сбросить location после отправки //проблема again
         setImageURL(response.data.image_url);
         setImageId(response.data.image_id);
 
