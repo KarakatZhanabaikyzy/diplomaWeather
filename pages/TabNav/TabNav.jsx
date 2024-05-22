@@ -60,10 +60,10 @@ export function TabNav(){
           marginRight: 15,
           marginBottom: 15,
           borderRadius: 10,
-          // position: 'absolute',
-          // bottom: 0,
-          // left: 0,
-          // right: 0,
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
           
 
         },
@@ -76,7 +76,8 @@ export function TabNav(){
         
         tabBarShowLabel: false,
         headerShown: false,
-        
+        keyboardHidesTabBar: true,
+        // tabBarHideOnKeyboard: true
       };
 
     return(

@@ -42,7 +42,7 @@ export const s = StyleSheet.create({
     color: 'white',
   },
   activeCategoryText: {
-    fontWeight:"bold",
+    // fontWeight:"bold",
     color: 'black',
   },
   flatlistContainer:{
@@ -108,7 +108,24 @@ loading: {
   alignItems: 'center',
   justifyContent: 'center', 
   zIndex: 100, // overlay над другими элементами
-}
+},
+basicCategory:{
+  height: 40,
+  width: 85,
+  //  backgroundColor:"red",
+  alignItems:"center",
+  justifyContent:"center",
+  borderRadius: 12,
+},
+
+chosenCategory:{
+  height: 40,
+   width: 85,
+    backgroundColor: "#FFFADD",
+    alignItems:"center",
+    justifyContent:"center",
+    borderRadius: 12,
+},
 
 
 });

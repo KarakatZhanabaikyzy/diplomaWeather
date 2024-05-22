@@ -1,4 +1,4 @@
-import {View, Text, Image,Alert, TouchableOpacity, TextInput, Button, ScrollView} from "react-native";
+import {View, Text, Image,Alert, TouchableOpacity, TextInput, Button, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
 import {s} from "./Chat.style";
 import { TopHeader } from "../../components/TopHeader/TopHeader";
 import { Txt } from "../../components/Txt/Txt";
@@ -81,45 +81,49 @@ export function Chat(){
           <View style={s.chat_box}>
             <View style={s.header_container}>
                <Text style={s.header_txt}>
-                  WeatherWardrobe Chat
+                  Wardrobe Assistant
                </Text>
             </View>   
-           <ScrollView style={{ flex: 1 }}>
+            <KeyboardAvoidingView 
+            style={{ flex: 1 }}
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            keyboardVerticalOffset={Platform.OS === "ios" ? 60 : 80}
+        >
+            <ScrollView style={{ flex: 1 }}>
                 {messages.map((msg, index) => (
                     <View key={index} style={{ margin: 10, padding: 10, flexDirection: 'row', alignItems: 'center' }}>
-                        {/* <Image source={msg.avatar} style={{ width: 40, height: 40, borderRadius: 25 }} /> */}
                         <Image 
-                        source={msg.type === 'sent' ? avatarUser : avatarBot} 
-                        style={{ width: 40, height: 40, borderRadius: 25 }} 
-                    />
+                            source={msg.type === 'sent' ? avatarUser : avatarBot} 
+                            style={{ width: 40, height: 40, borderRadius: 25 }} 
+                        />
                         <View style={{ marginLeft: 10 , width: 280}}>
                             <Text style={{ fontWeight: 'bold', fontSize: 15, color: msg.type === 'sent' ? 'black' : '#22668D'}}>{msg.name}</Text>
                             <Text style={{ color: msg.type === 'sent' ? 'black' : '#22668D' }}>{msg.text}</Text>
                         </View>
                     </View>
                 ))}
-
                 {isLoading && (
-        <View style={{ margin: 10, padding: 10, flexDirection: 'row', alignItems: 'center',  zIndex: 100 }}>
-            <Image source={avatarBot} style={{ width: 40, height: 40, borderRadius: 25 }} />
-            <Text style={{ marginLeft: 10, color: '#22668D' }}>{`Weather Wardrobe is typing${typingAnimation}`}</Text>
-        </View>
-    )}
+                    <View style={{ margin: 10, padding: 10, flexDirection: 'row', alignItems: 'center', zIndex: 100 }}>
+                        <Image source={avatarBot} style={{ width: 40, height: 40, borderRadius: 25 }} />
+                        <Text style={{ marginLeft: 10, color: '#22668D' }}>{`Weather Wardrobe is typing${typingAnimation}`}</Text>
+                    </View>
+                )}
             </ScrollView>
-          <View style={s.txt_box}>
-              <TextInput
-                   style={s.txt_input}
-                   onChangeText={setMessage}
-                   value={message}
-                   placeholder="Message WeatherWardrobe"
-              />
-              <TouchableOpacity 
-                   style={s.btn_send}
-                   onPress={sendMessage}
-               >
-               <Text style={s.btn_txt}>↑</Text>
-               </TouchableOpacity>
-          </View>
+            <View style={s.txt_box}>
+                <TextInput
+                    style={s.txt_input}
+                    onChangeText={setMessage}
+                    value={message}
+                    placeholder="Message WeatherWardrobe"
+                />
+                <TouchableOpacity 
+                    style={s.btn_send}
+                    onPress={sendMessage}
+                >
+                <Text style={s.btn_txt}>↑</Text>
+                </TouchableOpacity>
+            </View>
+        </KeyboardAvoidingView>
       </View>
        
      );

@@ -18,7 +18,7 @@ export const s = StyleSheet.create({
    width: 380,
    borderTopLeftRadius: 15,
    borderTopRightRadius: 15,
-   height: 40,
+   height: 48,
    alignItems: "center"
    },
    header_txt:{

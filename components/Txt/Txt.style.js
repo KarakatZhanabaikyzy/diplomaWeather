@@ -4,7 +4,7 @@ export const s = StyleSheet.create({
    text: {
         fontSize: 22,
         color: "black",
-        fontFamily: 'Alata-Regular',
+        fontFamily: 'Comfortaa-VariableFont_wghtf',
    },
 });
 

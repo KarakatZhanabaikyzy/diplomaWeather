@@ -1,0 +1,13 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Alata-Regular.ttf",
+      "sha1": "43d1232d168d2dbd2606dd43a2b530646d35ff5a"
+    },
+    {
+      "path": "assets/fonts/Danfo-Regular-VariableFont_ELSH.ttf",
+      "sha1": "6ffa2a89faec85f86951db7b53e86c2c49213807"
+    }
+  ]
+}

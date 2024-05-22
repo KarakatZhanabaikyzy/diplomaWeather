@@ -40,9 +40,10 @@ export function CategoryPage({ route }){
    
 
     const categories = [
-      { label: 'Outfit', component: RecommendationPage },
+     
       { label: 'Favorites', component: Favs },
-      { label: 'Chat', component: Chat },
+      { label: 'Outfit', component: RecommendationPage },
+      { label: 'Assistant', component: Chat },
     ];
 
     const handleCategoryPress = (category) => {
@@ -68,7 +69,10 @@ export function CategoryPage({ route }){
             </TopHeader>
              <View style={s.categoryContainer}>
         {categories.map((category, index) => (
-          <TouchableOpacity key={index} onPress={() => handleCategoryPress(category)}>
+          <TouchableOpacity 
+            key={index}
+            style={[s.basicCategory, activeCategory === category.label && s.chosenCategory]}
+            onPress={() => handleCategoryPress(category)}>
             <Text style={[s.categoryText, activeCategory === category.label && s.activeCategoryText]}>
               {category.label}
             </Text>

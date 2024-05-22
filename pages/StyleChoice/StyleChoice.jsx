@@ -194,7 +194,11 @@ export function StyleChoice(){
      <View style={{flex: 1}}>
       <View style={s.categoryContainer}>
         {Object.keys(categoriesData).map((cat, index) => (
-          <TouchableOpacity key={index} onPress={() => handleCategoryPress(cat)}>
+          <TouchableOpacity 
+            key={index}
+            style={[s.basicCategory, category === cat && s.chosenCategory]} 
+            onPress={() => handleCategoryPress(cat)}
+            >
             <Text style={[s.categoryText, category === cat && s.activeCategoryText]}>
               {cat}
             </Text>

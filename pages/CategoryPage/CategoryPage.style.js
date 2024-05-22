@@ -61,11 +61,19 @@ back_btn:{
     borderColor:"#22668D",
     borderWidth: 1.5,
 },
+basicCategory:{
+   height: 40,
+   width: 120,
+//    backgroundColor:"red",
+   alignItems:"center",
+   justifyContent:"center",
+   borderRadius: 12,
+},
 
 categoryContainer: {
     height: 50,
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: "space-evenly",
     alignItems:"center",
     paddingVertical: 10,
     backgroundColor:"#FFCC70",
@@ -74,12 +82,20 @@ categoryContainer: {
     width: 382,
     marginTop: 18
   },
+  chosenCategory:{
+    height: 40,
+   width: 120,
+    backgroundColor: "#FFFADD",
+    alignItems:"center",
+    justifyContent:"center",
+    borderRadius: 12,
+  },
   categoryText: {
     fontSize: 18,
     color: 'white',
   },
   activeCategoryText: {
-    fontWeight:"bold",
+    
     color: 'black',
   },
 });
