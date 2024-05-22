@@ -14,17 +14,32 @@ import {useEffect, useState } from "react";
 import { Favs } from "../Favs/Favs";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
+import { LoginPage } from "../LoginPage/LoginPage";
+import { SignupPage } from "../SignupPage/SignupPage";
 
 export function CategoryPage({ route }){
 
   
+  const nav = useNavigation();
+  const [activeCategory, setActiveCategory] = useState('Outfit');
+
+  useEffect(() => {
+    checkUser();
+  }, []);
+
   async function checkUser() {
     const token = await AsyncStorage.getItem('access_token');
     if (!token) {
-      console.log('No user token found, using default coordinates');
-      return 'Default City';
+      Alert.alert(
+        "Authorization Required",
+        "You need to be logged in to access this feature.",
+        [
+          {text: "Login", onPress: () => nav.navigate('LoginPage')},
+          {text: "Sign Up", onPress: () => nav.navigate('SignupPage')}
+        ]
+      );
     }
-  };
+  }
 
   // console.log("category props: ", route.params);
   // console.log("category route: ", route);
@@ -34,11 +49,6 @@ export function CategoryPage({ route }){
   };
 
  
-
-  const nav = useNavigation();
-  const [activeCategory, setActiveCategory] = useState('Outfit');
-   
-
     const categories = [
      
       { label: 'Favorites', component: Favs },

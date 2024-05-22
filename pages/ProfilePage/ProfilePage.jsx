@@ -10,6 +10,7 @@ import axios from 'axios';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useNavigation } from "@react-navigation/native";
 import { LoginPage } from "../LoginPage/LoginPage";
+import { SignupPage } from "../SignupPage/SignupPage";
 
 export function ProfilePage(){
 
@@ -20,6 +21,24 @@ export function ProfilePage(){
 
     const nav = useNavigation();
 
+    useEffect(() => {
+        checkUser();
+      }, []);
+
+      async function checkUser() {
+        const token = await AsyncStorage.getItem('access_token');
+        if (!token) {
+          Alert.alert(
+            "Authorization Required",
+            "You need to be logged in to access this feature.",
+            [
+              {text: "Login", onPress: () => nav.navigate('LoginPage')},
+              {text: "Sign Up", onPress: () => nav.navigate('SignupPage')}
+            ]
+          );
+        }
+      }
+    
 
     useEffect(() => {
         async function fetchData() {

@@ -21,7 +21,7 @@ async function getUserCity() {
   const token = await AsyncStorage.getItem('access_token');
   if (!token) {
     console.log('No user token found, using default coordinates');
-    return 'Default City';
+    return 'Warsaw';
   }
 
   try {
@@ -135,7 +135,7 @@ export function MainPage(){
           <View style={s.topHeader}>
             <TopHeader style={{height:95}}>
                     <Txt>{city}</Txt>
-                    <Txt style={s.date}>Today, 22 sep</Txt>
+                    <Txt style={s.date}>Today, 10 June</Txt>
             </TopHeader>
           </View>  
           </View>
