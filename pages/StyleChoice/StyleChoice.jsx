@@ -28,6 +28,24 @@ export function StyleChoice(){
   const [imageId, setImageId] = useState('');
   const [shouldNavigate, setShouldNavigate] = useState(false);
 
+  useEffect(() => {
+    checkUser();
+  }, []);
+
+  async function checkUser() {
+    const token = await AsyncStorage.getItem('access_token');
+    if (!token) {
+      Alert.alert(
+        "Authorization Required",
+        "You need to be logged in to access this feature.",
+        [
+          {text: "Login", onPress: () => nav.navigate('LoginPage')},
+          {text: "Sign Up", onPress: () => nav.navigate('SignupPage')}
+        ]
+      );
+    }
+  }
+
 
 
   // const [clothingStyle, setClothingStyle] = useState(category);

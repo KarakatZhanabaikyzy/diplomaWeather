@@ -14,6 +14,7 @@ import { getWeatherInterpretation } from "..//../meteo-utils";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
+import { useRoute } from '@react-navigation/native';
 
 const { width } = Dimensions.get('window'); 
 
@@ -60,6 +61,7 @@ async function getCoordinatesForCity(city) {
 export function MainPage(){
 
   const nav = useNavigation();
+  const route = useRoute();
 
   const [coordinates, setCoordinates] = useState(null);
   const [weather, setWeather] = useState();
@@ -67,6 +69,13 @@ export function MainPage(){
   const [images, setImages] = useState([]);
   const scrollViewRef = useRef(null); 
   const [scrollIndex, setScrollIndex] = useState(0);
+
+  useEffect(() => {
+    if (route.params?.updatedCity) {
+        setCity(route.params.updatedCity);
+    }
+}, [route.params]);
+
 
 //движение картинок через интервал 
 //   useEffect(() => {
@@ -107,7 +116,7 @@ export function MainPage(){
     fetchImages();
     
 
-}, []);
+}, [city]); //city
 
 
   useEffect(() => {
@@ -115,7 +124,7 @@ export function MainPage(){
       setCity(city);
       getCoordinatesForCity(city).then(setCoordinates);
     });
-  }, []);
+  }, [city]); //city
 
   useEffect(() => {
     if (coordinates) {

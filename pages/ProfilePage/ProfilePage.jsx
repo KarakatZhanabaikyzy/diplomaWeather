@@ -14,12 +14,15 @@ import { SignupPage } from "../SignupPage/SignupPage";
 
 export function ProfilePage(){
 
+    const nav = useNavigation();
+
     const [username, setUsername] = useState('');
+    const [displayedUsername, setDisplayedUsername] = useState('');
     const [email, setEmail] = useState('');
     const [city, setCity] = useState('');
+    const [initialCity, setInitialCity] = useState('');
     const [feedback, setFeedback] = useState('');
 
-    const nav = useNavigation();
 
     useEffect(() => {
         checkUser();
@@ -52,12 +55,22 @@ export function ProfilePage(){
                 setUsername(response.data.username);
                 setEmail(response.data.email);
                 setCity(response.data.city);
+                setInitialCity(response.data.city);
+                setDisplayedUsername(username); 
             } catch (error) {
                 console.error('Error loading user data:', error);
             }
         }
         fetchData();
     }, []);
+
+    useEffect(() => {
+        if (username) {
+            setDisplayedUsername(username);
+        }
+    }, [username]);
+    
+
 
     async function saveChanges() {
         try {
@@ -71,11 +84,18 @@ export function ProfilePage(){
                     'Authorization': `Bearer ${token}`
                 }
             });
-            Alert.alert("Success", "Your data successfully updated!");
-            console.log("New username:",username);
-            console.log("New city:",city);
-            // nav.navigate("MainPage");
-
+            if (response.status === 200) {
+                setDisplayedUsername(username);
+                console.log("New username:", username);
+                console.log("New city:", city);
+    
+                if (city !== initialCity) {  
+                    Alert.alert("Success", "Your data successfully updated!");
+                    nav.navigate('MainPage', { updatedCity: city });
+                } else {
+                    Alert.alert("Success", "Your data successfully updated!");
+                }
+            }
         } catch (error) {
             console.error('Error saving changes:', error);
             Alert.alert("Error", "Error saving changes");
@@ -134,8 +154,8 @@ export function ProfilePage(){
                     <Image style={s.ava} source={logo}/>
                     </View>
                     <View style={s.txt_info}>
-                    <Txt>Hello, {username} !</Txt> 
-                    {/* <Txt style={{fontSize:18, color:"#ABA7A7"}}>{email}</Txt> */}
+                    {/* <Txt>Hello {displayedUsername}!</Txt>  */}
+                    <Txt>Welcome to Weather Wardrobe</Txt> 
                     </View>
                     <View style={s.inputContainer}>
                        <Txt style={{alignSelf:"flex-start"}}>Profile Information</Txt>
