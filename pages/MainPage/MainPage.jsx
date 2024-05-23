@@ -21,7 +21,7 @@ async function getUserCity() {
   const token = await AsyncStorage.getItem('access_token');
   if (!token) {
     console.log('No user token found, using default coordinates');
-    return 'Warsaw';
+    return 'Astana';
   }
 
   try {
@@ -34,13 +34,13 @@ async function getUserCity() {
     return userData.city;
   } catch (error) {
     console.error('Error fetching user city:', error);
-    return 'Warsaw'; 
+    return 'Astana'; 
   }
 }
 
 async function getCoordinatesForCity(city) {
   if (!city) {
-    return { lat: "41.38879", lng: "2.15899" }; 
+    return { lat: "51.1801", lng: "71.44598" }; 
   }
 
   try {
@@ -50,7 +50,7 @@ async function getCoordinatesForCity(city) {
     return { lat, lng };
   } catch (error) {
     console.error('Error getting coordinates for city:', error);
-    return { lat: "41.38879", lng: "2.15899" };
+    return { lat: "51.1801", lng: "71.44598" };
   }
 }
 

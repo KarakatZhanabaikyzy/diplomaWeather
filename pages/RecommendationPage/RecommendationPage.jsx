@@ -7,7 +7,7 @@ import welcomePic from "..//../assets/pics/girlWindy.png";
 import {ButtonFavs} from "../../components/ButtonFavs/ButtonFavs";
 import mainPageExample from "..//../assets/mainPageExample.png";
 import { ButtonLike } from "../../components/ButtonLike/ButtonLike";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useIsFocused  } from "@react-navigation/native";
 import { ButtonSmall } from "../../components/ButtonSmall/ButtonSmall";
 import {useEffect, useState } from "react";
 import { Favs } from "../Favs/Favs";
@@ -28,21 +28,30 @@ export function RecommendationPage( {route} ){
       }
     };
 
-    
-    // const imageUrl = route?.params?.imageUrl || "https://diplomawork-production.up.railway.app/static/out/txt2img_2311103220.png";
-    // const imageID = route?.params?.imageID || "663f6365ef0536edb90dedd8";
+  
 
-    const [imageUrl, setImageUrl] = useState( route?.params?.imageUrl || "https://diplomawork-production.up.railway.app/static/out/txt2img_2311103220.png");
-    const [imageID, setImageID] = useState(route?.params?.imageID || "663f6365ef0536edb90dedd8");
+    // const [imageUrl, setImageUrl] = useState( route?.params?.imageUrl || "https://diplomawork-production.up.railway.app/static/out/txt2img_2311103220.png");
+    // const [imageID, setImageID] = useState(route?.params?.imageID || "663f6365ef0536edb90dedd8");
 
     const locationRefresh =  route?.params?.locationRefresh || "Casual";
     const categoryRefresh =  route?.params?.locationRefresh || "Meet-up";
 
+    const nav = useNavigation();
+    const isFocused = useIsFocused(); // Hook to check if the screen is focused
+  
+    const [imageUrl, setImageUrl] = useState('');
+    const [imageID, setImageID] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
+    const { imageUrl: routeImageUrl, imageID: routeImageID } = route.params || {};
 
-    const nav = useNavigation();
-   
+    // Listen for changes in focus and route parameters
+    useEffect(() => {
+      if (isFocused && routeImageUrl && routeImageUrl !== imageUrl) {
+        setImageUrl(routeImageUrl);
+        setImageID(routeImageID);
+      }
+    }, [isFocused, routeImageUrl, routeImageID]);
 
 
     async function addToFavorites() {
@@ -114,20 +123,7 @@ export function RecommendationPage( {route} ){
                  </Txt>
                  <View>
                  </View>
-                 {
-                    console.log("Тип imageUrl:", typeof imageUrl)
-                 }
-                 {
-                    console.log("Значение imageUrl:", imageUrl)
-                 }
-                 {  
-                    
-                       typeof imageUrl === 'string' ? (
-                       <Image style={s.img_carousel} source={{ uri: imageUrl }} />
-                    ) : (
-                       <Image style={s.img_carousel} source={mainPageExample} />
-                    )
-                }
+                 <Image style={s.img_carousel} source={{ uri: imageUrl || 'https://diplomawork-production.up.railway.app/static/out/txt2img_2311103220.png' }} />
                  <View style={s.buttons_box}>
                     <ButtonSmall 
                         style={s.back_btn}
