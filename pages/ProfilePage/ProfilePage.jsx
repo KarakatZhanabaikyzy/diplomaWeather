@@ -1,4 +1,4 @@
-import {View, Text, Image, TextInput, Alert} from "react-native";
+import {View, Text, Image, TextInput, Alert, ToastAndroid, TouchableOpacity} from "react-native";
 import {s} from "./ProfilePage.style";
 import {Txt} from "..//../components/Txt/Txt";
 import logo from "..//../assets/logo.jpg";
@@ -11,6 +11,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { useNavigation } from "@react-navigation/native";
 import { LoginPage } from "../LoginPage/LoginPage";
 import { SignupPage } from "../SignupPage/SignupPage";
+
 
 export function ProfilePage(){
 
@@ -158,7 +159,7 @@ export function ProfilePage(){
                     <Txt>Weather Wardrobe</Txt> 
                     </View>
                     <View style={s.inputContainer}>
-                       <Txt style={{alignSelf:"flex-start"}}>Profile Information</Txt>
+                       <Txt style={{alignSelf:"flex-start", marginLeft: 12}}>Profile Information</Txt>
                        <View style={s.input_box}>
                        <View style={s.root}>
                           <TextInput
@@ -187,7 +188,7 @@ export function ProfilePage(){
                        </View>
                    </View>
                    <View style={s.inputFeedback}>
-                       <Txt style={{alignSelf:"flex-start"}}>Feedback</Txt>
+                       <Txt style={{alignSelf:"flex-start",  marginLeft: 12}}>Feedback</Txt>
                        <View style={s.input_feedback}>
                        <View style={s.root}>
                           <TextInput
@@ -198,6 +199,7 @@ export function ProfilePage(){
                            />
                         </View> 
                        </View>
+                 <View style={s.btns_container}>      
                        <View style={s.buttons_box}>
                     <ButtonSmall style={{backgroundColor:"#22668D"}}
                         onPress={sendFeedback}>
@@ -209,16 +211,19 @@ export function ProfilePage(){
                         <Txt style={{color:"white", fontSize: 18}}>Save changes</Txt>
                     </ButtonSmall>
                 </View>
-                   </View>
-                
-                     <ButtonBig 
-                        style={s.button_ext}
+                   
+                <View style={s.button_ext_container}>
+                     <TouchableOpacity
+                        style={s.buttonExt}
                         onPress={handleLogout}
                         >
                         <Text style={{color:"white", fontSize: 20}} >
                             Exit
                         </Text>
-                     </ButtonBig>
+                        </TouchableOpacity>
+                </View>
+                </View>
+                </View>
               </View> 
         </View>
         </KeyboardAwareScrollView>

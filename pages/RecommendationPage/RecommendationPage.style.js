@@ -2,7 +2,8 @@ import { StyleSheet } from "react-native";
 
 export const s = StyleSheet.create({
     main_box:{
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor:"white"
     },
     headerStyle:{
         flexDirection:"row",
@@ -15,7 +16,8 @@ export const s = StyleSheet.create({
         width: 120,
         height: 150,
         marginRight: 10,
-        resizeMode:'contain'
+        resizeMode:'contain',
+        backgroundColor:"white"
     },
     girlWindy:{
         width: 120,
@@ -31,19 +33,19 @@ export const s = StyleSheet.create({
    },
    recommendation_box:{
     alignItems:"center",
-    height:510,
+    height:420,
     marginTop: 15,
     width: 380,
-//    backgroundColor:"blue",
+   backgroundColor:"white",
     justifyContent:"space-between",
     
 },
 img_carousel:{
-    width: 380,
-    height: 380,
+    width: 320,
+    height: 320,
     flexDirection:"row",
     alignItems:"center",
-    marginTop: 15,
+    marginTop: 10,
     backgroundColor:"white",
     borderRadius: 10
 },
@@ -53,8 +55,9 @@ buttons_box:{
     marginTop: 5,
     marginBottom: 10,
     width: 400,
-    //backgroundColor:"red",
-    justifyContent: "space-evenly"
+    // backgroundColor:"red",
+    justifyContent: "space-evenly",
+    paddingHorizontal: 20
 },
 back_btn:{
     backgroundColor:"white",

@@ -2,7 +2,8 @@ import { StyleSheet } from "react-native";
 
 export const s = StyleSheet.create({
     main_box:{
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor:"white"
     },
     headerStyle:{
         flexDirection:"row",
@@ -12,18 +13,18 @@ export const s = StyleSheet.create({
         marginRight: 45
     },
     img_box:{
-        width: 120,
-        height: 150,
+        width: 80,
+        height: 120,
         marginRight: 10,
         resizeMode:'contain'
     },
     girlWindy:{
-        width: 120,
-        height: 150,
+        width: 80,
+        height: 120,
         resizeMode:'contain'
    },
    txt_choice:{
-    fontSize: 18
+    fontSize: 15
    },
    txt_favs:{
     fontSize: 15,
@@ -79,19 +80,20 @@ categoryContainer: {
     backgroundColor:"#FFCC70",
     marginHorizontal: 15,
     borderRadius: 15,
-    width: 382,
-    marginTop: 18
+    width: 340,
+    marginTop: 18,
+    paddingHorizontal: 8
   },
   chosenCategory:{
     height: 40,
-   width: 120,
+   width: 90,
     backgroundColor: "#FFFADD",
     alignItems:"center",
     justifyContent:"center",
     borderRadius: 12,
   },
   categoryText: {
-    fontSize: 18,
+    fontSize: 16,
     color: 'white',
   },
   activeCategoryText: {

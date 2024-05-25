@@ -7,24 +7,28 @@ export const s = StyleSheet.create({
   },
     headerStyle:{
         flexDirection:"row",
-        justifyContent:"flex-start",
+        justifyContent: "flex-start",
         alignItems:"center",
-        paddingTop: 10,
-        marginRight: 45
+        paddingTop: 15,
+        marginLeft: 90,
+        width: 413
     },
     img_box:{
-        width: 120,
-        height: 150,
+        width: 80,
+        height: 100,
         marginRight: 10,
         resizeMode:'contain'
     },
     rainGirl:{
-        width: 120,
-        height: 150,
-        resizeMode:'contain'
+        width: 80,
+        height: 100,
+        resizeMode:'contain',
+        // backgroundColor: "red"
    },
    txt_choice:{
-    fontSize: 18
+    fontSize: 15,
+    marginLeft: 15,
+    // backgroundColor: "blue"
    },
 
    categoryContainer: {
@@ -35,7 +39,8 @@ export const s = StyleSheet.create({
     paddingVertical: 10,
     backgroundColor:"#FFCC70",
     marginHorizontal: 15,
-    borderRadius: 15
+    borderRadius: 15,
+    paddingHorizontal: 8
   },
   categoryText: {
     fontSize: 16,
@@ -68,8 +73,8 @@ export const s = StyleSheet.create({
 
   },
   itemImage: {
-    width: 165,
-    height: 165,
+    width: 140,
+    height: 140,
     borderRadius: 15,
     padding: 5
   },
@@ -120,11 +125,11 @@ basicCategory:{
 
 chosenCategory:{
   height: 40,
-   width: 85,
-    backgroundColor: "#FFFADD",
-    alignItems:"center",
-    justifyContent:"center",
-    borderRadius: 12,
+  width: 78,
+  backgroundColor: "#FFFADD",
+  alignItems:"center",
+  justifyContent:"center",
+  borderRadius: 12,
 },
 
 

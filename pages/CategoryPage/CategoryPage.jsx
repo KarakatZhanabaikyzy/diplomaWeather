@@ -65,7 +65,7 @@ export function CategoryPage({ route }){
 
      return(
         <View style={s.main_box}>
-            <TopHeader>
+             <TopHeader style={{borderBottomRightRadius:60, borderBottomLeftRadius: 60, width: 360 }}>
                 <View style={s.headerStyle}>
                 <View style={s.img_box}>
                     <Image style={s.girlWindy} source={welcomePic}/>

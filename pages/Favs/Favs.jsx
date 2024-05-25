@@ -107,6 +107,7 @@ export function Favs(){
     };
 
     return(
+        <View style={{backgroundColor: "white", height: 800}}>
         <View style={s.flatlistContainer}>
         <FlatList
            data={favorites}
@@ -118,6 +119,7 @@ export function Favs(){
         </View>
         )}
         />
+        </View>
         </View>
 
     );

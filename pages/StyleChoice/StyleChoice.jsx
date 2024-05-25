@@ -189,22 +189,20 @@ export function StyleChoice(){
 
 
      return(
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, backgroundColor:"white"}}>
           {isLoading && (
             <View style={s.loading}>
                 <ActivityIndicator size="large" color="white" />
             </View>
           )}
-            <TopHeader>
+            <TopHeader style={{borderBottomRightRadius:60, borderBottomLeftRadius: 60, width: 360 }}>
                 <View style={s.headerStyle}>
                 <View style={s.img_box}>
                     <Image style={s.rainGirl} source={rainGirl}/>
                 </View>
                 <View>
-                    <Txt style={s.txt_choice}>Let's choose your</Txt>
-                    <Txt style={s.txt_choice}>style of clothing,</Txt>
-                    <Txt style={s.txt_choice}>in the future it will</Txt>
-                    <Txt style={s.txt_choice}>help us</Txt>
+                    <Txt style={s.txt_choice}>Let's choose your style of </Txt>
+                    <Txt style={s.txt_choice}>clothing and occasion!</Txt>
                 </View>
                 </View>  
             </TopHeader>

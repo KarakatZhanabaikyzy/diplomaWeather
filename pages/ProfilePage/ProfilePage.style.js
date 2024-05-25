@@ -9,8 +9,8 @@ export const s = StyleSheet.create({
         backgroundColor:"#22668D",
       },
       innerView: {
-        width: 412,
-        height: 670,
+        width: 370,
+        height: 580,
         flex: 1,
         marginTop:70,
         backgroundColor: "white",
@@ -21,8 +21,8 @@ export const s = StyleSheet.create({
 
       },
       circle: {
-        width: 150,
-        height: 150,
+        width: 120,
+        height: 120,
         backgroundColor: "white",
         borderRadius: 80,
         position: "absolute",
@@ -31,8 +31,8 @@ export const s = StyleSheet.create({
         justifyContent:"center" 
       },
       ava:{
-        width: 120,
-        height: 120,
+        width: 100,
+        height: 100,
         backgroundColor: "white",
         borderRadius: 80,
         position: "absolute",
@@ -43,27 +43,29 @@ export const s = StyleSheet.create({
       txt_info:{
         alignItems:"center",
       //  backgroundColor:"green",
-        marginTop: 10,
-        marginBottom: 25,
+        // paddingTop: 50,
+        marginBottom: 5,
       },
       inputContainer:{
       //  backgroundColor:"blue",
-        width: 412,
+        width: 400,
         height: 140,
         paddingHorizontal: 20,
-        alignItems:"center"
+        alignItems:"center",
+        marginTop: 5
       },
       input_box:{
         justifyContent: "space-evenly",
       //  backgroundColor:"red",
-        width: 400,
+        width: 362,
         height: 200,
         alignItems:"center",
         paddingHorizontal: 10,
+        
       },
       button_ext:{
         backgroundColor:"#7E7E7E", 
-        // marginBottom: 40,
+        marginBottom: 40,
         marginTop: 0,
         width: 250
       },
@@ -82,18 +84,19 @@ export const s = StyleSheet.create({
     },
 
     inputFeedback:{
-        width: 412,
+        width: 400,
         height: 200,
         paddingHorizontal: 20,
         alignItems:"center",
         // backgroundColor:"pink",
         justifyContent:"center",
-        marginTop: 100
+        marginTop: 145,
+        
     },
     input_feedback:{
       justifyContent: "space-evenly",
       // backgroundColor:"red",
-       width: 400,
+       width: 362,
        height: 80,
        alignItems:"center",
        paddingHorizontal: 10,
@@ -101,13 +104,40 @@ export const s = StyleSheet.create({
     buttons_box:{
       flexDirection:"row",
       alignItems:"center",
-      // // marginBottom: 10,
+      // marginBottom: 2,
       // backgroundColor:"blue",
       justifyContent: "space-evenly",
-      marginHorizontal: 15,
-      width: 412,
-
-    
+      marginHorizontal: 20,
+      width: 360,
+      // marginLeft: 10,
+      // marginRight: 10
+      
+      
+  },
+  button_ext:{
+    // marginBottom: 60,
+    backgroundColor:"red"
+  },
+  btns_container:{
+    // backgroundColor:"purple",
+    justifyContent: "space-between",
+    alignItems:"center",
+    height: 130,
+    marginBottom: 60
+  },
+  button_ext_container:{
+    marginBottom: 15
+  },
+  buttonExt: {
+    padding: 10,
+    borderRadius: 5,
+    marginVertical: 10,
+    alignItems:"center",
+    borderRadius: 15,
+    height: 50,
+    width: 300,
+    justifyContent:"center",
+    backgroundColor: "#7E7E7E"
   },
 
 });

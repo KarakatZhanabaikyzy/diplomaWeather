@@ -34,9 +34,10 @@ export const s = StyleSheet.create({
    flatlistContainer:{
    alignItems: "center",
 //    backgroundColor:"blue",
-   width: 412,
+   width: 360,
    flexDirection:"row",
    justifyContent:"space-evenly",
+   marginTop: 5
    
    },
    imageContainer: {
@@ -46,12 +47,12 @@ export const s = StyleSheet.create({
     justifyContent: "center",
     alignItems: 'center',
     // backgroundColor: "green",
-    height: 185,
-    width: 185
+    height: 160,
+    width: 160
     },
     image: {
-    width: 180,
-    height: 180,
+    width: 160,
+    height: 160,
     borderRadius: 20
     },
     description: {

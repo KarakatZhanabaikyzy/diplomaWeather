@@ -78,6 +78,7 @@ export function Chat(){
    
 
      return(
+        <View style={{backgroundColor: "white", height: 800}}>
           <View style={s.chat_box}>
             <View style={s.header_container}>
                <Text style={s.header_txt}>
@@ -91,12 +92,12 @@ export function Chat(){
         >
             <ScrollView style={{ flex: 1 }}>
                 {messages.map((msg, index) => (
-                    <View key={index} style={{ margin: 10, padding: 10, flexDirection: 'row', alignItems: 'center' }}>
+                    <View key={index} style={{ margin: 8, padding: 10, flexDirection: 'row', alignItems: 'center' }}>
                         <Image 
                             source={msg.type === 'sent' ? avatarUser : avatarBot} 
                             style={{ width: 40, height: 40, borderRadius: 25 }} 
                         />
-                        <View style={{ marginLeft: 10 , width: 280}}>
+                        <View style={{ marginLeft: 10 , width: 262}}>
                             <Text style={{ fontWeight: 'bold', fontSize: 15, color: msg.type === 'sent' ? 'black' : '#22668D'}}>{msg.name}</Text>
                             <Text style={{ color: msg.type === 'sent' ? 'black' : '#22668D' }}>{msg.text}</Text>
                         </View>
@@ -124,6 +125,7 @@ export function Chat(){
                 </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>
+      </View>
       </View>
        
      );

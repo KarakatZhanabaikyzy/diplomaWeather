@@ -111,14 +111,15 @@ export function RecommendationPage( {route} ){
 
 
      return(
-      <View style={{flex: 1}}>
+      <View style={{backgroundColor: "white", height: 800}}>
+      <View style={{flex: 1, backgroundColor:"white"}}>
           {isLoading && (
             <View style={s.loading}>
                 <ActivityIndicator size="large" color="white" />
             </View>
           )}
             <View style={s.recommendation_box}>
-                 <Txt style={{fontSize: 27}}>
+                 <Txt style={{fontSize: 20}}>
                       My recommendation
                  </Txt>
                  <View>
@@ -139,6 +140,7 @@ export function RecommendationPage( {route} ){
                     </ButtonSmall>
                  </View>
             </View>
+       </View>
        </View>
      );
 };
