@@ -7,7 +7,7 @@ export const s = StyleSheet.create({
        paddingTop: 60,
        paddingHorizontal: 15,
     //    flex:5,
-    height: 850
+    height: 700
     },
     hi:{
         flex: 0.5,

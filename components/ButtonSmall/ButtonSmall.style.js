@@ -7,8 +7,11 @@ export const s = StyleSheet.create({
         marginVertical: 10,
         alignItems:"center",
         borderRadius: 15,
-        height: 55,
-        width: 180,
+        // height: 55,
+        // width: 180,
+        height: 48,
+        width: 160,
+
         justifyContent:"center",
       },
 });

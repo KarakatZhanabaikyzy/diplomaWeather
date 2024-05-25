@@ -139,7 +139,7 @@ const handleBackendResponse = (data) => {
         <ScrollView contentContainerStyle={{ flexGrow: 3}}>  
         <View style={s.main_box}>
             <View style={s.hi}>
-                <Txt style={{fontSize: 30}}>Hi, Register yourself</Txt>
+                <Txt style={{fontSize: 28}}>Hi, Register yourself</Txt>
             </View>
             <View style={s.input_box}>
                 

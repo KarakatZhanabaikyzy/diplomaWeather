@@ -155,7 +155,7 @@ export function ProfilePage(){
                     </View>
                     <View style={s.txt_info}>
                     {/* <Txt>Hello {displayedUsername}!</Txt>  */}
-                    <Txt>Welcome to Weather Wardrobe</Txt> 
+                    <Txt>Weather Wardrobe</Txt> 
                     </View>
                     <View style={s.inputContainer}>
                        <Txt style={{alignSelf:"flex-start"}}>Profile Information</Txt>

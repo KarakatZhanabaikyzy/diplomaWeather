@@ -7,7 +7,7 @@ export const s = StyleSheet.create({
        paddingTop: 60,
        paddingHorizontal: 15,
     //    flex:1,
-       height: 850
+       height: 750
     },
     hi:{
         flex: 0.3,
@@ -45,7 +45,7 @@ export const s = StyleSheet.create({
         height: 70,
         borderRadius: 15,
         paddingLeft: 25,
-        width: 180
+        width: 160
     },
     genderCity:{
         flexDirection: 'row',

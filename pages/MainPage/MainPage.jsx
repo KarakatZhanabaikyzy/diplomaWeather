@@ -142,7 +142,7 @@ export function MainPage(){
         <View style={s.box}>
           <View>
           <View style={s.topHeader}>
-            <TopHeader style={{height:95}}>
+            <TopHeader style={{height:80}}>
                     <Txt>{city}</Txt>
                     <Txt style={s.date}>Today, 10 June</Txt>
             </TopHeader>

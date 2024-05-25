@@ -15,9 +15,10 @@ export function Welcome(){
                 <Image style={s.img} source={welcomePic}/>
             </View>
             <View style={s.txt_box}>
-              <Txt style={{fontSize: 30}}>Dress for the</Txt>
-              <Txt style={{fontSize: 30}}>weather with us</Txt>
+              <Txt style={{fontSize: 27}}>Dress for the</Txt>
+              <Txt style={{fontSize: 27}}>weather with us</Txt>
             </View>
+            <View style={s.buttons_container}>
             <View style={s.buttons_box1}>
             <ButtonSmall 
                   style={{backgroundColor: "#FFCC70"}} 
@@ -36,6 +37,7 @@ export function Welcome(){
                     <Txt style={s.text}>Use as a guest</Txt>
                 </ButtonBig>
                 
+            </View>
             </View>
         </View>
     );

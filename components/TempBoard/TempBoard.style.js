@@ -9,7 +9,7 @@ export const s = StyleSheet.create({
         borderColor: "white",
         borderWidth: 2,
         borderRadius: 10,
-        height: 200,
+        height: 150,
         
     },
     box1:{
@@ -21,7 +21,7 @@ export const s = StyleSheet.create({
         
     },
     interpretation_txt:{
-        fontSize: 40,
+        fontSize: 30,
         color:"#02466D",
     },
     box2:{
@@ -36,8 +36,8 @@ export const s = StyleSheet.create({
         height:30
     },
     weatherOption:{
-        width: 80,
-        height:80,
+        width: 55,
+        height:55,
         resizeMode:'contain'
     }
 });
@@ -47,7 +47,7 @@ export function StyledContainer({children}){
     return <View style={{alignItems: "center", 
                  backgroundColor: "white",
                  width: 100,
-                 height: 110,
+                 height: 80,
                  borderRadius: 10,
                  justifyContent:"space-evenly"
                 }}>
@@ -62,7 +62,7 @@ export function StyledLabel({children}){
 export function StyledValue({children}){
     return <Txt 
             style={{
-                fontSize: 25,
+                fontSize: 20,
                 color:"#02466D"
             }}>
                 {children}

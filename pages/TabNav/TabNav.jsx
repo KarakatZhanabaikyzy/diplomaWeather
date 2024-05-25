@@ -51,15 +51,15 @@ export function TabNav(){
     const screenOptions = {
         tabBarStyle:{
           backgroundColor:'#22668D',
-          height: 65,
+          height: 50,
           paddingHorizontal: 15,
           flexDirection: "row",
           justifyContent: 'center',
           alignItems: 'center',
           marginLeft: 15,
           marginRight: 15,
-          marginBottom: 15,
-          borderRadius: 10,
+          marginBottom: 5,
+          borderRadius: 15,
           position: 'absolute',
           bottom: 0,
           left: 0,
@@ -81,8 +81,6 @@ export function TabNav(){
       };
 
     return(
-      
-      
           <Tab.Navigator  {...{ screenOptions }}
           > 
             <Tab.Screen 
