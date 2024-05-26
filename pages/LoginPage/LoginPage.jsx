@@ -114,6 +114,7 @@ const handleGoogleSignIn = async () => {
                 <TextInput 
                    style={s.input_text} 
                    placeholder="E-mail"
+                   placeholderTextColor="#858585"
                    value={email}
                    onChangeText={text => setEmail(text)}
                 />
@@ -122,18 +123,19 @@ const handleGoogleSignIn = async () => {
                  <TextInput
                    style={s.input_text} 
                    placeholder="Password"
+                   placeholderTextColor="#858585"
                    value={password}
                    onChangeText={text => setPassword(text)}
                    secureTextEntry={true}/>
               </View>
             </View>
             <View style={s.redirection}>
-                <TouchableOpacity>
+                {/* <TouchableOpacity>
                   <View style={s.forgot}>
                    <Txt style={{color:"#02466D"}
                     }>Forgot password?</Txt>
                   </View>  
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 <ButtonBig style={{backgroundColor: "#FFCC70"}} 
                        onPress={handleLogin}>
                     <Txt 

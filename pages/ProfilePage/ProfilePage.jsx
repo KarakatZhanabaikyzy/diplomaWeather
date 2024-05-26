@@ -167,6 +167,7 @@ export function ProfilePage(){
                               value={email}
                               onChangeText={setEmail}
                               placeholder="E-mail"
+                              placeholderTextColor="#000"
                            />
                         </View> 
                         <View style={s.root}>
@@ -175,6 +176,7 @@ export function ProfilePage(){
                               value={username}
                               onChangeText={setUsername}
                               placeholder="Username"
+                              placeholderTextColor="#000"
                            />
                         </View>  
                         <View style={s.root}>
@@ -183,6 +185,7 @@ export function ProfilePage(){
                               value={city}
                               onChangeText={setCity}
                               placeholder="City"
+                              placeholderTextColor="#000"
                            />
                         </View> 
                        </View>
@@ -196,6 +199,7 @@ export function ProfilePage(){
                               value={feedback}
                               onChangeText={setFeedback}
                               placeholder="Give a feedback"
+                              placeholderTextColor="#000"
                            />
                         </View> 
                        </View>

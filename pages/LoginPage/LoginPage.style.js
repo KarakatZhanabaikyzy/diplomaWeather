@@ -48,6 +48,7 @@ export const s = StyleSheet.create({
         height: 70,
         borderRadius: 15,
         paddingLeft: 25,
+        color:"#000"
     }
    
 });

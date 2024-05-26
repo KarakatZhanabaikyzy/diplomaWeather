@@ -58,7 +58,7 @@ export function Favs(){
         const onLongPress = () => {
             Alert.alert(
                 "Options",
-                "Select an option",
+                "Select an option to see description of image or to delete it.",
                 [
                     // { text: "Cancel", style: "cancel" },
                     { text: "Description", onPress: () => Alert.alert("Description", item.description || "No description available.") },

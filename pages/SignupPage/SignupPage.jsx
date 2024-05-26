@@ -146,6 +146,7 @@ const handleBackendResponse = (data) => {
             <View style={s.root}>
                <TextInput style={s.input_text} 
                 placeholder="E-mail"
+                placeholderTextColor="#858585"
                 value={email}
                 onChangeText={text => setEmail(text)}
                 />
@@ -153,6 +154,7 @@ const handleBackendResponse = (data) => {
             <View style={s.root}>
                 <TextInput style={s.input_text} 
                 placeholder="Username"
+                placeholderTextColor="#858585"
                 value={username}
                 onChangeText={text => setUsername(text)}
                 />
@@ -180,6 +182,7 @@ const handleBackendResponse = (data) => {
                    <View style={s.root}>
                       <TextInput style={s.city} 
                       placeholder="City"
+                      placeholderTextColor="#858585"
                       value={city}
                       onChangeText={text => setCity(text)}/>
                    </View>
@@ -187,6 +190,7 @@ const handleBackendResponse = (data) => {
             <View style={s.root}>    
                 <TextInput style={s.input_text} 
                 placeholder="Password"
+                placeholderTextColor="#858585"
                 value={password}
                 onChangeText={text => setPassword(text)}
                 secureTextEntry={true} />

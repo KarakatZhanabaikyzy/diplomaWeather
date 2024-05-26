@@ -80,7 +80,8 @@ export const s = StyleSheet.create({
         borderRadius: 15,
         flexDirection:"row",
         justifyContent:"space-evenly",
-        paddingLeft: 13
+        paddingLeft: 13,
+        color: "#000"
     },
 
     inputFeedback:{

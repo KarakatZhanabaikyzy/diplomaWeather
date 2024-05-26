@@ -45,7 +45,8 @@ export const s = StyleSheet.create({
         height: 70,
         borderRadius: 15,
         paddingLeft: 25,
-        width: 160
+        width: 160,
+        color:"#000"
     },
     genderCity:{
         flexDirection: 'row',
@@ -88,6 +89,7 @@ export const s = StyleSheet.create({
         height: 70,
         borderRadius: 15,
         paddingLeft: 25,
+        color:"#000"
        
     },
    

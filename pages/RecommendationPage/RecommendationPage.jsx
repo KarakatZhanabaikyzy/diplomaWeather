@@ -73,7 +73,7 @@ export function RecommendationPage( {route} ){
           }
         } catch (error) {
           console.error('Error adding to favorites:', error);
-          Alert.alert("Error", "Failed to add to favorites");
+          Alert.alert("Sorry", "You can save only 3 oufits, for save more buy subscription.");
         }
         console.log("Image ID:", imageID);
       }
