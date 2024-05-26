@@ -226,6 +226,7 @@ export function ProfilePage(){
                 </View>
               </View> 
         </View>
+        <View style={{backgroundColor: "white", height: 800}}></View>
         </KeyboardAwareScrollView>
     );
 };
