@@ -1,4 +1,4 @@
-import {View, Text, Image, TouchableOpacity, TextInput, ScrollView} from "react-native";
+import {View, Text, Image, TouchableOpacity, TextInput, ScrollView, Alert} from "react-native";
 import { useState } from "react";
 import {Txt} from "..//../components/Txt/Txt";
 import {s} from "./SignupPage.style";
@@ -24,61 +24,120 @@ export function SignupPage(){
     const [gender, setGender] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSignup = () => {
+    // const handleSignup = () => {
        
-        if (!email.trim()) {
-            console.error('Email is required');
-            return;
-        }
-        if (!username.trim()) {
-            console.error('Username is required');
-            return;
-        }
-        if (!city.trim()) {
-            console.error('City is required');
-            return;
-        }
-        if (gender !== 'm' && gender !== 'f') {
-            console.error('Gender must be either "m" or "f"');
-            return;
-        }
-        if (!password) {
-            console.error('Password is required');
-            return;
-        }
+    //     if (!email.trim()) {
+    //         console.error('Email is required');
+    //         return;
+    //     }
+    //     if (!username.trim()) {
+    //         console.error('Username is required');
+    //         return;
+    //     }
+    //     if (!city.trim()) {
+    //         console.error('City is required');
+    //         return;
+    //     }
+    //     if (gender !== 'm' && gender !== 'f') {
+    //         console.error('Gender must be either "m" or "f"');
+    //         return;
+    //     }
+    //     if (!password) {
+    //         console.error('Password is required');
+    //         return;
+    //     }
 
-        register()
-    };
+    //     register()
+    // };
 
 
-    const register = async () => {
-        console.log("trying to request ")
-        const body = {
-            "email": email.trim(),
-            "username": username.trim(),
-            "city": city.trim(),
-            "gender": gender,
-            "password": password,
-        };
-        console.log(email);
-        console.log(username);
+    // const register = async () => {
+    //     console.log("trying to request ")
+    //     const body = {
+    //         "email": email.trim(),
+    //         "username": username.trim(),
+    //         "city": city.trim(),
+    //         "gender": gender,
+    //         "password": password,
+    //     };
+    //     console.log(email);
+    //     console.log(username);
 
-        const headers = {
+    //     const headers = {
            
-            "Content-Type": "application/json",
-        };
+    //         "Content-Type": "application/json",
+    //     };
 
-        try {
-            const response = await axios.post(
-                "https://diplomawork-production.up.railway.app/register",
-                body,
-                { headers }
-            );
-            console.log(response.data);
-        } catch (error) {
-            console.log("err", error.response.data);
-        }
+    //     try {
+    //         const response = await axios.post(
+    //             "https://diplomawork-production.up.railway.app/register",
+    //             body,
+    //             { headers }
+    //         );
+    //         console.log(response.data);
+    //     } catch (error) {
+    //         console.log("err", error.response.data);
+    //     }
+    // };
+
+const handleSignup = () => {
+    if (!email.trim()) {
+        console.error('Email is required');
+        Alert.alert("Error", "Email is required"); 
+        return;
+    }
+    if (!username.trim()) {
+        console.error('Username is required');
+        Alert.alert("Error", "Username is required");
+        return;
+    }
+    if (!city.trim()) {
+        console.error('City is required');
+        Alert.alert("Error", "City is required");
+        return;
+    }
+    if (gender !== 'm' && gender !== 'f') {
+        console.error('Gender must be either "m" or "f"');
+        Alert.alert("Error", "Gender must be either 'M' or 'W'");
+        return;
+    }
+    if (!password) {
+        console.error('Password is required');
+        Alert.alert("Error", "Password is required");
+        return;
+    }
+
+    register();
+};
+
+const register = async () => {
+    console.log("Trying to request");
+    const body = {
+        "email": email.trim(),
+        "username": username.trim(),
+        "city": city.trim(),
+        "gender": gender,
+        "password": password,
     };
+
+    const headers = {
+        "Content-Type": "application/json",
+    };
+
+    try {
+        const response = await axios.post(
+            "https://diplomawork-production.up.railway.app/register",
+            body,
+            { headers }
+        );
+        console.log(response.data);
+        Alert.alert("Success", "Confirmation email was sent. Check your email."); 
+    } catch (error) {
+        console.error("Error", error.response.data);
+        Alert.alert("Registration Failed", error.response.data); 
+    }
+};
+
 
     
     const [selectedOption, setSelectedOption] = useState(null);
@@ -86,7 +145,7 @@ export function SignupPage(){
         setSelectedOption(option); 
         setGender(option);
     };
-    
+
 
     GoogleSignin.configure({
         webClientId: '988664370161-svs8r2t1cj2kpec0680vpe1uggtfo2t0.apps.googleusercontent.com', 
@@ -175,7 +234,7 @@ const handleBackendResponse = (data) => {
                            style={[s.option, selectedOption === 'f' && s.selectedOption]}
                            onPress={() => handleOptionSelect('f')}
                          >
-                             <Text style={s.label}>W</Text>
+                             <Text style={s.label}>F</Text>
                           </TouchableOpacity>
                         </View>
                    </View>

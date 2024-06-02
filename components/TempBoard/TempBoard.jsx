@@ -22,7 +22,7 @@ export function TempBoard({temperature, windspeed, interpretation}){
            </StyledContainer>
            <StyledContainer >
                  <Image style={s.image_charac} source={humidityIcon}/>
-                 <StyledValue>25 %</StyledValue>
+                 <StyledValue>46 %</StyledValue>
            </StyledContainer>
            <StyledContainer >
                  <Image style={s.image_charac} source={windIcon}/>

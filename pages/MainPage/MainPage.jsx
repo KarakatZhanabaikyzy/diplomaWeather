@@ -94,29 +94,57 @@ export function MainPage(){
 // }, [scrollIndex, images.length]); 
 
 
-  useEffect(() => {
-    const fetchImages = async () => {
-        try {
-            const token = await AsyncStorage.getItem('access_token');
-            const response = await axios.get('https://diplomawork-production.up.railway.app/images/today', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            console.log(response.data.map(img => ({ image_url: img.image_url })));
-            // const carouselImg = response.data.map(img => ({ image_url: img.image_url }));
-            // setImages(carouselImg); 
-            setImages(response.data.map(img => ({ image_url: img.image_url })));
-            console.log('Images for Carousel:', images);
-        } catch (error) {
-            console.error('Failed to fetch images', error);
-        }
-    };
+//   useEffect(() => {
+//     const fetchImages = async () => {
+//         try {
+//             const token = await AsyncStorage.getItem('access_token');
+//             const response = await axios.get('https://diplomawork-production.up.railway.app/images/today', {
+//                 headers: {
+//                     'Authorization': `Bearer ${token}`
+//                 }
+//             });
+//             console.log(response.data.map(img => ({ image_url: img.image_url })));
+//             // const carouselImg = response.data.map(img => ({ image_url: img.image_url }));
+//             // setImages(carouselImg); 
+//             setImages(response.data.map(img => ({ image_url: img.image_url })));
+//             console.log('Images for Carousel:', images);
+//         } catch (error) {
+//             console.error('Failed to fetch images', error);
+//         }
+//     };
 
-    fetchImages();
+//     fetchImages();
     
 
-}, [city]); //city
+// }, [city]); //city
+
+
+useEffect(() => {
+  const fetchImages = async () => {
+    try {
+      const token = await AsyncStorage.getItem('access_token');
+      let response;
+      if (token) {
+        response = await axios.get('https://diplomawork-production.up.railway.app/images/today', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+      } else {
+        response = await axios.get('https://diplomawork-production.up.railway.app/images');
+        setImages(response.data.map(img => ({ image_url: img.image_url })));
+        console.log("no tokennnn", images)
+      }
+      console.log(response.data.map(img => ({ image_url: img.image_url })));
+      setImages(response.data.map(img => ({ image_url: img.image_url })));
+      console.log('Images for Carousel:', images);
+    } catch (error) {
+      console.error('Failed to fetch images', error);
+    }
+  };
+
+  fetchImages();
+}, [city]); 
 
 
   useEffect(() => {
@@ -144,7 +172,7 @@ export function MainPage(){
           <View style={s.topHeader}>
             <TopHeader style={{height:80}}>
                     <Txt>{city}</Txt>
-                    <Txt style={s.date}>Today, 10 June</Txt>
+                    <Txt style={s.date}>Today, 29 May</Txt>
             </TopHeader>
           </View>  
           </View>
@@ -175,7 +203,7 @@ export function MainPage(){
                         />
                     ))
                 ) : (
-                    <Text>Images loading...</Text>
+                    <Text style={{color:"#000"}}>Images loading...</Text>
                 )}
             </ScrollView>
             </View>
