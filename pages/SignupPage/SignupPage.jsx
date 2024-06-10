@@ -24,62 +24,6 @@ export function SignupPage(){
     const [gender, setGender] = useState('');
     const [password, setPassword] = useState('');
 
-    // const handleSignup = () => {
-       
-    //     if (!email.trim()) {
-    //         console.error('Email is required');
-    //         return;
-    //     }
-    //     if (!username.trim()) {
-    //         console.error('Username is required');
-    //         return;
-    //     }
-    //     if (!city.trim()) {
-    //         console.error('City is required');
-    //         return;
-    //     }
-    //     if (gender !== 'm' && gender !== 'f') {
-    //         console.error('Gender must be either "m" or "f"');
-    //         return;
-    //     }
-    //     if (!password) {
-    //         console.error('Password is required');
-    //         return;
-    //     }
-
-    //     register()
-    // };
-
-
-    // const register = async () => {
-    //     console.log("trying to request ")
-    //     const body = {
-    //         "email": email.trim(),
-    //         "username": username.trim(),
-    //         "city": city.trim(),
-    //         "gender": gender,
-    //         "password": password,
-    //     };
-    //     console.log(email);
-    //     console.log(username);
-
-    //     const headers = {
-           
-    //         "Content-Type": "application/json",
-    //     };
-
-    //     try {
-    //         const response = await axios.post(
-    //             "https://diplomawork-production.up.railway.app/register",
-    //             body,
-    //             { headers }
-    //         );
-    //         console.log(response.data);
-    //     } catch (error) {
-    //         console.log("err", error.response.data);
-    //     }
-    // };
-
 const handleSignup = () => {
     if (!email.trim()) {
         console.error('Email is required');
@@ -146,22 +90,6 @@ const register = async () => {
         setGender(option);
     };
 
-
-    GoogleSignin.configure({
-        webClientId: '988664370161-svs8r2t1cj2kpec0680vpe1uggtfo2t0.apps.googleusercontent.com', 
-    });
-    
-    
-const handleGoogleSignIn = async () => {
-    try {
-        await GoogleSignin.hasPlayServices();
-        const userInfo = await GoogleSignin.signIn();
-        const tokens = await GoogleSignin.getTokens();
-        sendTokenToBackend(tokens.idToken);
-    } catch (error) {
-        console.error('Google sign-in error:', error);
-    }
-};
 
 const sendTokenToBackend = async (idToken) => {
     try {
@@ -272,13 +200,6 @@ const handleBackendResponse = (data) => {
                    </TouchableOpacity>
                 </View>
             </View>
-            <View style={s.google}>
-                <Txt style={{color:"#B0B0B0"}}>Other method</Txt>
-                <ButtonGoogle 
-                   onPress={handleGoogleSignIn}
-                />
-            </View>
-
         </View>
         </ScrollView> 
         </KeyboardAwareScrollView>

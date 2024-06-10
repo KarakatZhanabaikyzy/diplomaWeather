@@ -10,7 +10,7 @@ import { SignupPage } from "../SignupPage/SignupPage";
 import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import {ForgotPasswordEmail} from "..//ForgotPassword/ForgotPasswordEmail/ForgotPasswordEmail";
 
 
 export function LoginPage(){
@@ -78,22 +78,6 @@ export function LoginPage(){
      
 };
 
-GoogleSignin.configure({
-  webClientId: '988664370161-svs8r2t1cj2kpec0680vpe1uggtfo2t0.apps.googleusercontent.com', 
-});
-
-const handleGoogleSignIn = async () => {
-  try {
-      await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
-      const idToken = userInfo.idToken;
-      sendTokenToServer(idToken); 
-  } catch (error) {
-      console.error(error);
-  }
-};
-
-
 
     return(
       <KeyboardAwareScrollView
@@ -130,12 +114,13 @@ const handleGoogleSignIn = async () => {
               </View>
             </View>
             <View style={s.redirection}>
-                {/* <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={()=> nav.navigate("ForgotPasswordEmail", {})}>
                   <View style={s.forgot}>
                    <Txt style={{color:"#02466D"}
                     }>Forgot password?</Txt>
                   </View>  
-                </TouchableOpacity> */}
+                </TouchableOpacity>
                 <ButtonBig style={{backgroundColor: "#FFCC70"}} 
                        onPress={handleLogin}>
                     <Txt 
@@ -152,13 +137,6 @@ const handleGoogleSignIn = async () => {
                    </TouchableOpacity>
                 </View>
             </View>
-            <View style={s.google}>
-                <Txt style={{color:"#B0B0B0"}}>Other method</Txt>
-                <ButtonGoogle
-                   onPress={handleGoogleSignIn} 
-                    />
-            </View>
-            
             
         </View>
      </ScrollView>   

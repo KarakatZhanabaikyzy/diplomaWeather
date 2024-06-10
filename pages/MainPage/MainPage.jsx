@@ -172,7 +172,7 @@ useEffect(() => {
           <View style={s.topHeader}>
             <TopHeader style={{height:80}}>
                     <Txt>{city}</Txt>
-                    <Txt style={s.date}>Today, 29 May</Txt>
+                    <Txt style={s.date}>Today, 10 June</Txt>
             </TopHeader>
           </View>  
           </View>

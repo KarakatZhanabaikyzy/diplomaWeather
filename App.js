@@ -12,6 +12,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StyleChoice } from "./pages/StyleChoice/StyleChoice";
 import {ProfilePage} from "./pages/ProfilePage/ProfilePage";
 import { Favs } from "./pages/Favs/Favs";
+import {ForgotPasswordEmail} from "./pages/ForgotPassword//ForgotPasswordEmail/ForgotPasswordEmail";
+import {ForgotPasswordCode} from "./pages/ForgotPassword/ForgotPasswordCode/ForgotPasswordCode";
+import {ForgotPasswordNew} from "./pages/ForgotPassword/ForgotPasswordNew/ForgotPasswordNew";
+
 
 
 const Stack = createNativeStackNavigator();
@@ -43,6 +47,10 @@ export default function App(){
                   <Stack.Screen name="StyleChoice" component={StyleChoice}/> 
                   <Stack.Screen name="ProfilePage" component={ProfilePage}/> 
                   <Stack.Screen name="Favs" component={Favs}/> 
+                  <Stack.Screen name="ForgotPasswordEmail" component={ForgotPasswordEmail}/> 
+                  <Stack.Screen name="ForgotPasswordCode" component={ForgotPasswordCode}/> 
+                  <Stack.Screen name="ForgotPasswordNew" component={ForgotPasswordNew}/> 
+
                </Stack.Navigator> 
              </SafeAreaView> 
         </SafeAreaProvider>  
