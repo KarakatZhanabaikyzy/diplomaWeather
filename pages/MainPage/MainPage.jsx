@@ -77,47 +77,6 @@ export function MainPage(){
 }, [route.params]);
 
 
-//движение картинок через интервал 
-//   useEffect(() => {
-//     const interval = setInterval(() => {
-//         if (scrollViewRef.current) {
-//             let newScrollIndex = scrollIndex + 1;
-//             if (newScrollIndex >= images.length) {
-//                 newScrollIndex = 0; 
-//             }
-//             scrollViewRef.current.scrollTo({ x: width * newScrollIndex, animated: true });
-//             setScrollIndex(newScrollIndex); // Обновление индекса прокрутки
-//         }
-//     }, 5000); // Прокрутка каждые 5000 мс (5 секунд)
-
-//     return () => clearInterval(interval);
-// }, [scrollIndex, images.length]); 
-
-
-//   useEffect(() => {
-//     const fetchImages = async () => {
-//         try {
-//             const token = await AsyncStorage.getItem('access_token');
-//             const response = await axios.get('https://diplomawork-production.up.railway.app/images/today', {
-//                 headers: {
-//                     'Authorization': `Bearer ${token}`
-//                 }
-//             });
-//             console.log(response.data.map(img => ({ image_url: img.image_url })));
-//             // const carouselImg = response.data.map(img => ({ image_url: img.image_url }));
-//             // setImages(carouselImg); 
-//             setImages(response.data.map(img => ({ image_url: img.image_url })));
-//             console.log('Images for Carousel:', images);
-//         } catch (error) {
-//             console.error('Failed to fetch images', error);
-//         }
-//     };
-
-//     fetchImages();
-    
-
-// }, [city]); //city
-
 
 useEffect(() => {
   const fetchImages = async () => {
