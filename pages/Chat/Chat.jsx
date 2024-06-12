@@ -34,7 +34,7 @@ export function Chat(){
               return;
           }
   
-          const response = await axios.post('https://diplomawork-production.up.railway.app/generate_advise', { 
+          const response = await axios.post('https://web-production-c2352.up.railway.app/generate_advise', { 
                message 
           }, {
               headers: {
@@ -116,6 +116,7 @@ export function Chat(){
                     onChangeText={setMessage}
                     value={message}
                     placeholder="Message WeatherWardrobe"
+                    placeholderTextColor="#858585"
                 />
                 <TouchableOpacity 
                     style={s.btn_send}
