@@ -16,9 +16,9 @@ export const s = StyleSheet.create({
     },
     input_box:{
         justifyContent:"space-between",
-        height: 210,
+        height: 120,
         // backgroundColor:"pink",
-        marginBottom: 170,
+        marginBottom: 270,
         alignItems:"center"
     },
     forgot:{

@@ -21,7 +21,7 @@ export function ForgotPasswordCode(){
 
     const handleSend = () => {
         axios.post('https://diplomawork-production.up.railway.app/verify_code', { 
-            email, 
+            // email, 
             code: code })
             .then(response => {
                 nav.navigate("ForgotPasswordNew", {});
@@ -52,16 +52,8 @@ export function ForgotPasswordCode(){
                 <Txt style={{fontSize: 28}}>Enter Code</Txt>
             </View>
             <View style={s.input_box}>
-              <Txt style={{fontSize: 18, color:"#858585"}}>Write your e-mail again and code</Txt>
-              <View style={s.root}>
-                <TextInput 
-                   style={s.input_text} 
-                   placeholder="E-mail"
-                   placeholderTextColor="#858585"
-                   value={email}
-                   onChangeText={text => setEmail(text)}
-                />
-              </View>
+              <Txt style={{fontSize: 18, color:"#858585"}}>Enter the verification code</Txt>
+            
               <View style={s.root}>
                  <TextInput
                    style={s.input_text} 

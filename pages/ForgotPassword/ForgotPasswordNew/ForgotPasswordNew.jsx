@@ -16,14 +16,14 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 export function ForgotPasswordNew(){
     const nav = useNavigation();
 
-    const [email, setEmail] = useState("");
+    // const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
     const handleContinue = async () => {
         try {
             const response = await axios.post('https://diplomawork-production.up.railway.app/reset_password', { 
-                email, 
+                // email, 
                 password: password, 
                 confirm_password: confirmPassword 
             });
@@ -51,16 +51,8 @@ export function ForgotPasswordNew(){
                 <Txt style={{fontSize: 28}}>Create New Password</Txt>
             </View>
             <View style={s.input_box}>
-              <Txt style={{fontSize: 18, color:"#858585"}}>Write your e-mail again and password</Txt>
-              <View style={s.root}>
-                <TextInput 
-                   style={s.input_text} 
-                   placeholder="Enter an e-mail"
-                   placeholderTextColor="#858585"
-                   value={email}
-                   onChangeText={text => setEmail(text)}
-                />
-              </View>
+              <Txt style={{fontSize: 18, color:"#858585"}}>Enter a new password and confirm it</Txt>
+             
               <View style={s.root}>
                 <TextInput 
                    style={s.input_text} 
@@ -74,7 +66,7 @@ export function ForgotPasswordNew(){
               <View style={s.root}>
                  <TextInput
                    style={s.input_text} 
-                   placeholder="Repeat new password"
+                   placeholder="Confirm new password"
                    placeholderTextColor="#858585"
                    value={confirmPassword}
                    onChangeText={text => setConfirmPassword(text)}
