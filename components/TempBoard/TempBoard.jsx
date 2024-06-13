@@ -8,7 +8,7 @@ import humidityIcon from "..//../assets/tempBoard/humidityIcon.png";
 import windIcon from "..//../assets/tempBoard/windIcon.png";
 import Example from "..//../assets/example.png";
 
-export function TempBoard({temperature, windspeed, interpretation}){
+export function TempBoard({temperature, windspeed, interpretation, humidity}){
     return(
         <LinearGradient colors={['#E2F6FC', '#73CFE8']} style={s.container}>
         <View style={s.box1}>
@@ -22,7 +22,7 @@ export function TempBoard({temperature, windspeed, interpretation}){
            </StyledContainer>
            <StyledContainer >
                  <Image style={s.image_charac} source={humidityIcon}/>
-                 <StyledValue>46 %</StyledValue>
+                 <StyledValue>{humidity}%</StyledValue>
            </StyledContainer>
            <StyledContainer >
                  <Image style={s.image_charac} source={windIcon}/>

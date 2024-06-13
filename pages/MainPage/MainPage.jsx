@@ -141,6 +141,7 @@ useEffect(() => {
                 interpretation ={getWeatherInterpretation(weather?.current_weather?.weathercode)}
                 temperature={Math.round(weather?.current_weather?.temperature)}
                 windspeed={Math.round(weather?.current_weather?.windspeed)}
+                humidity = {Math.round((weather?.current_weather?.windspeed)+(weather?.current_weather?.temperature))}
             />
             <View style={s.carousel_box}>
                  <Txt>

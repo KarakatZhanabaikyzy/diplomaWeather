@@ -130,13 +130,13 @@ export function RecommendationPage( {route} ){
                         style={s.back_btn}
                         onPress={refreshImage}
                         >
-                        <Txt style={{color:"#22668D"}}>again</Txt>    
+                        <Txt style={{color:"#22668D"}}>Again</Txt>    
                     </ButtonSmall>
                     <ButtonSmall 
                         style={{backgroundColor:"#22668D"}}
                         onPress={addToFavorites}
                         >
-                        <Txt style={{color:"white"}}>save look</Txt>
+                        <Txt style={{color:"white"}}>Save look</Txt>
                     </ButtonSmall>
                  </View>
             </View>

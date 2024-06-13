@@ -205,7 +205,7 @@ export function ProfilePage(){
                        </View>
                  <View style={s.btns_container}>      
                        <View style={s.buttons_box}>
-                    <ButtonSmall style={{backgroundColor:"#22668D"}}
+                    <ButtonSmall style={{backgroundColor:"#FFCC70"}}
                         onPress={sendFeedback}>
                         <Txt style={{color:"white", fontSize: 18}}>Send feedback</Txt>    
                     </ButtonSmall>

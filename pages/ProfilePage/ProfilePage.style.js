@@ -135,10 +135,10 @@ export const s = StyleSheet.create({
     marginVertical: 10,
     alignItems:"center",
     borderRadius: 15,
-    height: 50,
+    height: 55,
     width: 300,
     justifyContent:"center",
-    backgroundColor: "#7E7E7E"
+    backgroundColor: "#ED5E68",
   },
 
 });
